@@ -1,6 +1,6 @@
 package com.example.contexttrigger.components
 
-class Trigger {
+interface Trigger {
     // individual Trigger
     // BASE LOGIC THAT WILL BE USED
     /* Figuring out as i type
@@ -13,6 +13,20 @@ class Trigger {
     *
     * This passes control to something else
     *
+    * name , handle_event , should_run , handle
+    *
+    * next : have a demo to test all out
+    *
     * */
+
+    fun getPermissionNeeded() : String
+
+    suspend fun shouldRun() : Boolean
+
+    suspend fun handle() // action to be performed
+
+    fun getNotificationTitle() : String
+
+    fun getNotificationMessage() : String
 
 }
