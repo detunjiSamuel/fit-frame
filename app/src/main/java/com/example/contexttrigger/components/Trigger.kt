@@ -17,6 +17,8 @@ interface Trigger {
     *
     * next : have a demo to test all out
     *
+    * listen for changes
+    *
     * */
 
     fun getPermissionNeeded() : String

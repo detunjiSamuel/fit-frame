@@ -18,4 +18,8 @@ class TriggerManager {
         // this will ask for permissions based on triggers registered
     }
 
+    fun cleanup(){
+        // tasks that have to stop
+    }
+
 }
