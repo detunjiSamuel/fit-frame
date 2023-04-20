@@ -11,7 +11,7 @@ import android.hardware.SensorEventListener
 import android.hardware.SensorManager
 
 import android.util.Log
-
+import com.example.contexttrigger.components.SensorUpdatesHandler
 
 
 private const val PUBLIC_NAME = "STEPS_ACTIVITY_RECORDING"
@@ -70,12 +70,13 @@ class Steps : Service() , SensorEventListener {
             if (diff > maxBeforeCount) {
                 totalStepsRecorded = currentCount
 
-//                val intent = Intent(this, ContextUpdateManager::class.java)
-//                intent.putExtra("Data", "Steps")
-//                intent.putExtra("Count", diff)
+                val intent  = Intent (this , SensorUpdatesHandler::class.java)
 
+                intent.putExtra("CREATED_FOR" , PUBLIC_NAME )
 
-//                startService(intent)
+                intent.putExtra("DATA" , diff)
+
+                startService(intent)
             }
         }
     }

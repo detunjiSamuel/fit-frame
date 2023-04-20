@@ -2,14 +2,9 @@ package com.example.contexttrigger.listeners
 
 
 /***
- * ALL LISTENERS ADDED MUST BE INCLUDED HERE
+ * ALL CONTEXT LISTENERS ADDED MUST BE INCLUDED HERE
  */
 
-//interface IContextListener {
-//    val instance: Class<*>
-//    val isPendingIntent: Boolean
-//    val publicName: String
-//}
 
 data class ContextListener (
     val instance: Class<*>,
@@ -24,24 +19,3 @@ var contextListenersList = arrayOf<ContextListener>(
         "STEPS_ACTIVITY_RECORDING"
     )
 )
-
-
-
-
-//var contextListenersList = arrayOf(
-//    mapOf(
-//        "instance" to Steps::class.java,
-//        "isPendingIntent" to false,
-//        "publicName" to "STEPS_ACTIVITY_RECORDING"
-//    )
-//)
-
-
-
-//var contextListenersList = arrayOf(
-//    mapOf(
-//        "instance" to Steps::class.java,
-//        "isPendingIntent" to false,
-//        "publicName" to "STEPS_ACTIVITY_RECORDING"
-//    )
-//)
