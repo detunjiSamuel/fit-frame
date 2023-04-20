@@ -42,9 +42,9 @@ class StepsActivityRecording: Service() , SensorEventListener {
 
             Log.e("listeners", "steps sensor not found")
 
-//            intent = Intent(this, ContextUpdateManager::class.java)
-//            intent.putExtra("DataSource", "Steps")
-//            intent.putExtra("Count", -1)
+            intent.putExtra("CREATED_FOR" , PUBLIC_NAME )
+
+            intent.putExtra("DATA" , -1 )
 
             startService(intent)
             onDestroy() // stop service

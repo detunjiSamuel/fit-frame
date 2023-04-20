@@ -26,6 +26,11 @@ object TriggerStore {
         return triggers.toTypedArray()
     }
 
+    fun handleDataDispatch(destination : String , data: String){
+
+
+    }
+
      suspend fun runNotifications(context : Context) {
 
         for (trigger in getActiveTriggers())

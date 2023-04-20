@@ -59,7 +59,6 @@ class TriggerManager {
 
         ContextCompat.startForegroundService(context.applicationContext, intent)
 
-
     }
 
     fun cleanup(){

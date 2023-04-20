@@ -72,11 +72,48 @@ class SensorUpdatesHandler : Service() {
 
         var bundle: Bundle? = intent?.extras
 
-        var hasNoUpdates = bundle == null && intent == null
+        var hasUpdates = bundle != null && intent != null
 
-        if (hasNoUpdates)
+        if (bundle != null && intent != null)
         {
-             // CHECK FOR TRIGGER NOTIFICATION
+            // PASS DATA TO HANDLERS
+
+            if (intent.hasExtra("CREATED_FOR"))
+            {
+                // DISPATCH TO ALL TRIGGERS
+
+                var destination: String? = intent.getStringExtra("CREATED_FOR")
+                var data : String? =  intent.getStringExtra("DATA")
+                if (destination != null && data !=  null) {
+
+                    Log.d("requireSensorsUpdates", "dispatching to")
+                    Log.d("requireSensorsUpdates", destination)
+                    Log.d("requireSensorsUpdates", data)
+
+
+                    TriggerStore.handleDataDispatch(
+                        destination,
+                        data
+
+                    )
+                }
+
+                GlobalScope.launch {
+                    Log.d("requireSensorsUpdates", "dispatch done")
+                    Log.d("requireSensorsUpdates", "Notification checking")
+                    TriggerStore.runNotifications(this@SensorUpdatesHandler)
+                }
+            }
+
+
+
+
+        }
+        else
+        {
+
+
+            // CHECK FOR TRIGGER NOTIFICATION
 
             /*
             * GET ACTIVE TRIGGERS
@@ -94,12 +131,6 @@ class SensorUpdatesHandler : Service() {
                     "Service is running", "Service enabled"
                 ).build()
             )
-        }
-        else
-        {
-            // PASS DATA TO HANDLERS
-
-
 
 
         }
