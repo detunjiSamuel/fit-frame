@@ -23,9 +23,9 @@ interface Trigger {
 
     fun getPermissionNeeded() : String
 
-    suspend fun shouldRun() : Boolean
+    suspend fun shouldRunNotification() : Boolean // should trigger notification
 
-    suspend fun handle() // action to be performed
+    suspend fun handle() // Event_Handler
 
     fun getNotificationTitle() : String
 

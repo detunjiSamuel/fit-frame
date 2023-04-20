@@ -14,7 +14,11 @@ import android.util.Log
 
 
 
+private const val PUBLIC_NAME = "STEPS_ACTIVITY_RECORDING"
+
+
 class Steps : Service() , SensorEventListener {
+
 
     private var totalStepsRecorded = 0 // lastRecordSteps
     private var firstRecorded = true
@@ -38,7 +42,9 @@ class Steps : Service() , SensorEventListener {
 
             Log.e("listeners", "steps sensor not found")
 
-
+//            intent = Intent(this, ContextUpdateManager::class.java)
+//            intent.putExtra("DataSource", "Steps")
+//            intent.putExtra("Count", -1)
 
             startService(intent)
             onDestroy() // stop service
@@ -64,7 +70,12 @@ class Steps : Service() , SensorEventListener {
             if (diff > maxBeforeCount) {
                 totalStepsRecorded = currentCount
 
+//                val intent = Intent(this, ContextUpdateManager::class.java)
+//                intent.putExtra("Data", "Steps")
+//                intent.putExtra("Count", diff)
 
+
+//                startService(intent)
             }
         }
     }
