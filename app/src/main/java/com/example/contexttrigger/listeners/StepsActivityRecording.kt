@@ -17,7 +17,7 @@ import com.example.contexttrigger.components.SensorUpdatesHandler
 private const val PUBLIC_NAME = "STEPS_ACTIVITY_RECORDING"
 
 
-class Steps : Service() , SensorEventListener {
+class StepsActivityRecording: Service() , SensorEventListener {
 
 
     private var totalStepsRecorded = 0 // lastRecordSteps

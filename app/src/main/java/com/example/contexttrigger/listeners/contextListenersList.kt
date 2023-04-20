@@ -14,7 +14,7 @@ data class ContextListener (
 
 var contextListenersList = arrayOf<ContextListener>(
     ContextListener(
-         Steps::class.java,
+        StepsActivityRecording::class.java,
          false,
         "STEPS_ACTIVITY_RECORDING"
     )
