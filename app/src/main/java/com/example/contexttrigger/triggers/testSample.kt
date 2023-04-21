@@ -1,7 +1,10 @@
 package com.example.contexttrigger.triggers
 
 import android.content.Context
+import android.util.Log
 import com.example.contexttrigger.components.Trigger
+import com.example.contexttrigger.dataProducers.LOCATION_RECORDING_PUBLIC_NAME
+import com.example.contexttrigger.dataProducers.STEPS_RECORDING_PUBLIC_NAME
 
 
 /***
@@ -9,23 +12,38 @@ import com.example.contexttrigger.components.Trigger
  */
 
 class testSample : Trigger {
+
+    private var emitterNeeded =  arrayOf(LOCATION_RECORDING_PUBLIC_NAME)
+
     override fun getDataProducerNeeded(): Array<String> {
-        TODO("Not yet implemented")
+
+
+        return emitterNeeded
+
     }
 
     override suspend fun shouldRunNotification(context: Context): Boolean {
-        TODO("Not yet implemented")
+
+        return false
+
     }
 
     override suspend fun handle(context: Context, createdBy: String, data: String) {
-        TODO("Not yet implemented")
+
+        Log.d( "dev-log:testSample" , "handler called" )
+        Log.d( "dev-log:testSample" , createdBy )
+        Log.d( "dev-log:testSample" , data )
+
+
     }
 
     override fun getNotificationTitle(): String {
-        TODO("Not yet implemented")
+
+        return "something"
     }
 
     override fun getNotificationMessage(): String {
-        TODO("Not yet implemented")
+
+        return "something message"
     }
 }

@@ -41,6 +41,7 @@ class HalfWayPointSample () : Trigger {
 
     override suspend fun handle(context: Context, createdBy : String , data :String) {
 
+
         _context = context
 
 
@@ -50,8 +51,8 @@ class HalfWayPointSample () : Trigger {
 
         updateSteps(newSteps)
 
-        Log.d("requireHalfWayPoint" , "added")
-        Log.d("requireHalfWayPoint" , newSteps.toString())
+        Log.d(" dev-log:HalfWayPoint" , "added")
+        Log.d("dev-log:HalfWayPoint" , newSteps.toString())
 
 
     }
