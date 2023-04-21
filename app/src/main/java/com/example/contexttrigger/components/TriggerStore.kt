@@ -35,6 +35,7 @@ object TriggerStore {
 
         for (trigger in getActiveTriggers())
         {
+
             if (trigger.shouldRunNotification())
             {
                 // REGULAR- EVENT CHANNEL HAS BEEN CREATED WITH ITS SETTINGS EARLIER
