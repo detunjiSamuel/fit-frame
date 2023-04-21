@@ -61,6 +61,9 @@ class LocationRecording : Service() , LocationListener {
                 Manifest.permission.ACCESS_COARSE_LOCATION
             ) != PackageManager.PERMISSION_GRANTED
         ) {
+
+            Log.d("dev-log:locationRecording", "cannot get location info .. ")
+
             val intent  = Intent (this , SensorUpdatesHandler::class.java)
 
             intent.putExtra("CREATED_FOR" , LOCATION_RECORDING_PUBLIC_NAME )

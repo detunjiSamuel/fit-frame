@@ -37,13 +37,6 @@ private val REQUIRED_PERMISSIONS = arrayOf(
 
 class TriggerManager {
     // Main Interface of for user to access/import and use it
-    private val triggers = mutableListOf<Trigger>()
-
-
-
-    fun registerTrigger(trigger: Trigger) {
-        TriggerStore.registerTrigger(trigger)
-    }
 
     @RequiresApi(Build.VERSION_CODES.O)
     fun invoke(context : Context) {
