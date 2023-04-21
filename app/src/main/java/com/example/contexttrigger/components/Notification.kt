@@ -22,7 +22,7 @@ class Notification {
 
         val notify: NotificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
-        Log.d("Notification-handler", "Notification Sent")
+        Log.d("dev-log:notificationHandler", "Notification Sent")
         notify.notify(id, notification.build())
     }
 

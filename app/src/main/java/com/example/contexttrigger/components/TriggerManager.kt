@@ -54,7 +54,7 @@ class TriggerManager {
         // register All needed sensors listeners
 
         // start the sensorUpdateHandler
-        Log.d("requireSensorHandler", "started")
+        Log.d("dev-log:TriggerManager:sensorUpdated", "started")
 
         val intent = Intent(context , SensorUpdatesHandler::class.java )
 
@@ -72,7 +72,7 @@ class TriggerManager {
     private fun createNotificationChannels(context: Context) {
 
 
-        Log.d("requireNotification", "started")
+        Log.d("dev-log:TriggerManager:crateNoteChannel", "started")
 
 
         // have two now
@@ -96,7 +96,7 @@ class TriggerManager {
         context.getSystemService(NotificationManager::class.java)
             .createNotificationChannel(notificationChannelEvent)
 
-        Log.d("requireNotification", "ended")
+        Log.d("dev-log:TriggerManager:crateNoteChannel", "ended")
 
 
     }
@@ -111,12 +111,12 @@ class TriggerManager {
 //            Manifest.permission.READ_CALENDAR,
         ).subscribe { permission ->
                 if (permission.granted) {
-                    Log.d("requirePermissions", "permission.granted")
+                    Log.d("dev-log:TriggerManager:requirePermissions", "permission.granted")
 //                    val weather = Intent(this, WeatherLocationData::class.java)
 //                    startService(weather)
                 }
                 if (!permission.granted) {
-                    Log.d("requirePermissions", "permission.not-granted")
+                    Log.d("dev-log:TriggerManager:requirePermissions", "permission.not-granted")
 
                     ActivityCompat.requestPermissions(
                         activity,

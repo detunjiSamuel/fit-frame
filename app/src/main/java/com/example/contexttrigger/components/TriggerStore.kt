@@ -44,9 +44,9 @@ object TriggerStore {
 
     fun handleDataDispatch(destination : String , data: String){
 
-        Log.d("requireHandleDataDispatch", "data received")
-        Log.d("requireHandleDataDispatch", destination)
-        Log.d("requireHandleDataDispatch", data)
+        Log.d("dev-log:TriggerStore:requireHandleDataDispatch", "data received")
+        Log.d("dev-log:TriggerStore:requireHandleDataDispatch", destination)
+        Log.d("dev-log:TriggerStore:requireHandleDataDispatch", data)
 
 
 

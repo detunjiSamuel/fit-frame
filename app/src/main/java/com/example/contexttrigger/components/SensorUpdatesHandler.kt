@@ -24,7 +24,7 @@ class SensorUpdatesHandler : Service() {
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate() {
-        Log.d("requireSensorsUpdates", "Creating  manager...")
+        Log.d("dev-log:SensorsUpdatesHandler", "Creating  manager...")
 
         super.onCreate()
 
@@ -35,7 +35,7 @@ class SensorUpdatesHandler : Service() {
         )
 
         startValidListeners()
-        Log.d("requireSensorsUpdates", "Finished startValidListeners")
+        Log.d("dev-log:SensorsUpdatesHandler", "Finished startValidListeners")
 
     }
 
@@ -46,7 +46,7 @@ class SensorUpdatesHandler : Service() {
         for (contextListener in contextListenersList){
             //TODO enforce check to see if it is needed
 
-            Log.d("requireStartValidListeners", contextListener.publicName )
+            Log.d("dev-log:SensorsUpdates:StartValidListeners", contextListener.publicName )
 
             if (contextListener.isPendingIntent) {
                 // pending Intent has unique logic i.e alarm kinds
@@ -67,7 +67,7 @@ class SensorUpdatesHandler : Service() {
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
 
-        Log.d("requireSensorsUpdates", "onStartCommand Created")
+        Log.d("dev-log:SensorsUpdatesHandler", "onStartCommand Created")
         super.onStartCommand(intent, flags, startId)
 
         var bundle: Bundle? = intent?.extras
@@ -86,9 +86,9 @@ class SensorUpdatesHandler : Service() {
                 var data : String? =  intent.getStringExtra("DATA")
                 if (destination != null && data !=  null) {
 
-                    Log.d("requireSensorsUpdates", "dispatching to")
-                    Log.d("requireSensorsUpdates", destination)
-                    Log.d("requireSensorsUpdates", data)
+                    Log.d("dev-log:SensorsUpdatesHandler", "dispatching to")
+                    Log.d("dev-log:SensorsUpdatesHandler", destination)
+                    Log.d("dev-log:SensorsUpdatesHandler", data)
 
 
                     TriggerStore.handleDataDispatch(
@@ -99,8 +99,8 @@ class SensorUpdatesHandler : Service() {
                 }
 
                 GlobalScope.launch {
-                    Log.d("requireSensorsUpdates", "dispatch done")
-                    Log.d("requireSensorsUpdates", "Notification checking")
+                    Log.d("dev-log:SensorsUpdatesHandler", "dispatch done")
+                    Log.d("dev-log:SensorsUpdatesHandler", "Notification checking")
                     TriggerStore.runNotifications(this@SensorUpdatesHandler)
                 }
             }

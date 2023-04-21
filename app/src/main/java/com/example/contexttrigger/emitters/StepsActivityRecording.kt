@@ -25,7 +25,7 @@ class StepsActivityRecording: Service() , SensorEventListener {
     private var maxBeforeCount = 50
 
     override fun onStartCommand(intent: Intent, flags: Int, startId: Int): Int {
-        Log.d("listeners", "steps counter started")
+        Log.d("dev-log:stepsActivityRecording", "steps counter started")
         var intent = intent
         val sensorManager = getSystemService(SENSOR_SERVICE) as SensorManager
         // counter
@@ -36,11 +36,10 @@ class StepsActivityRecording: Service() , SensorEventListener {
             //TODO ensure it's is needed by the triggerManager before registering
             sensorManager.registerListener(this, sensor, SensorManager.SENSOR_DELAY_UI)
 
-
-            Log.d("listeners", "steps sensor activated")
+            Log.d("dev-log:stepsActivityRecording", "steps sensor activated")
         } else {
 
-            Log.e("listeners", "steps sensor not found")
+            Log.e("dev-log:stepsActivityRecording", "steps sensor not found")
 
             intent.putExtra("CREATED_FOR" , STEPS_RECORDING_PUBLIC_NAME )
 
