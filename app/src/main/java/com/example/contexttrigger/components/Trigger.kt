@@ -1,6 +1,6 @@
 package com.example.contexttrigger.components
 
-
+import android.content.Context
 
 
 interface Trigger {
@@ -24,12 +24,13 @@ interface Trigger {
     *
     * */
 
+    class Trigger(val context: Context)
 
     fun getEmitterNeeded() : Array<String> // who are you receiving data from
 
     suspend fun shouldRunNotification() : Boolean // should trigger notification
 
-    suspend fun handle() // Event_Handler
+    suspend fun handle(data : String) // Event_Handler
     // it is up to the developer to decide how to handle this
 
     fun getNotificationTitle() : String
