@@ -104,6 +104,7 @@ class SensorUpdatesHandler : Service() {
 
 
                     TriggerStore.handleDataDispatch(
+                        this,
                         destination,
                         data
 

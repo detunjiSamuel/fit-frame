@@ -9,7 +9,7 @@ import com.example.contexttrigger.components.Trigger
  */
 
 class testSample : Trigger {
-    override fun getEmitterNeeded(): Array<String> {
+    override fun getDataProducerNeeded(): Array<String> {
         TODO("Not yet implemented")
     }
 

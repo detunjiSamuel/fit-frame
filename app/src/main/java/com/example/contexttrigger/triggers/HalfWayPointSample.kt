@@ -17,7 +17,7 @@ class HalfWayPointSample () : Trigger {
     private lateinit var _context : Context
 
 
-    override fun getEmitterNeeded(): Array<String> {
+    override fun getDataProducerNeeded(): Array<String> {
         return emitterNeeded
     }
 

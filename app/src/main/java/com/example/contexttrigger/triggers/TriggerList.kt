@@ -1,5 +1,6 @@
 package com.example.contexttrigger.triggers
 
+import com.example.contexttrigger.components.Trigger
 
 
 /***
@@ -8,7 +9,7 @@ package com.example.contexttrigger.triggers
 
 
 
-val TriggerList =
+val TriggerList : Array<Trigger> =
      arrayOf(
         HalfWayPointSample(),
         testSample()
