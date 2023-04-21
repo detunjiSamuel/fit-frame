@@ -3,7 +3,7 @@ package com.example.contexttrigger.triggers
 import android.content.Context
 import android.util.Log
 import com.example.contexttrigger.components.Trigger
-import com.example.contexttrigger.emitters.STEPS_RECORDING_PUBLIC_NAME
+import com.example.contexttrigger.dataProducers.STEPS_RECORDING_PUBLIC_NAME
 
 
 class HalfWayPointSample () : Trigger {

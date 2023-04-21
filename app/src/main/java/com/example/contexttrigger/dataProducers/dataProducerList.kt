@@ -1,24 +1,24 @@
-package com.example.contexttrigger.emitters
+package com.example.contexttrigger.dataProducers
 
 
 /***
- * ALL CONTEXT LISTENERS ADDED MUST BE INCLUDED HERE
+ * ALL DATA PRODUCERS ADDED MUST BE INCLUDED HERE
  */
 
 
-data class ContextListener (
+data class DataProducer (
     val instance: Class<*>,
     val isPendingIntent: Boolean,
     val publicName: String,
 )
 
-var contextListenersList = arrayOf<ContextListener>(
-    ContextListener(
+var dataProducerList = arrayOf<DataProducer>(
+    DataProducer(
         StepsActivityRecording::class.java,
          false,
         STEPS_RECORDING_PUBLIC_NAME
     ),
-    ContextListener(
+    DataProducer(
         LocationRecording :: class.java,
         true,
         LOCATION_RECORDING_PUBLIC_NAME

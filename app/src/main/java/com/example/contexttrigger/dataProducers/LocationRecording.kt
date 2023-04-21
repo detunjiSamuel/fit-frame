@@ -1,4 +1,4 @@
-package com.example.contexttrigger.emitters
+package com.example.contexttrigger.dataProducers
 
 import android.Manifest
 import android.app.Service

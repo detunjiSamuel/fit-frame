@@ -9,7 +9,7 @@ import android.os.IBinder
 import android.util.Log
 import androidx.annotation.RequiresApi
 import com.example.contexttrigger.R
-import com.example.contexttrigger.emitters.contextListenersList
+import com.example.contexttrigger.dataProducers.dataProducerList
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import java.util.*
@@ -44,7 +44,7 @@ class SensorUpdatesHandler : Service() {
 
         // Trigger should have active Listeners
 
-        for (contextListener in contextListenersList){
+        for (contextListener in dataProducerList){
             //TODO enforce check to see if it is needed
 
             Log.d("dev-log:SensorsUpdates:StartValidListeners", contextListener.publicName )
