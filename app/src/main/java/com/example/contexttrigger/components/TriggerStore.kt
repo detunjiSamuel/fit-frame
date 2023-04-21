@@ -1,9 +1,9 @@
 package com.example.contexttrigger.components
 
 import android.content.Context
+import android.util.Log
 
 
-import com.example.contexttrigger.components.Trigger
 
 
 import com.example.contexttrigger.triggerSamples.HalfWayPointSample
@@ -43,6 +43,13 @@ object TriggerStore {
     }
 
     fun handleDataDispatch(destination : String , data: String){
+
+        Log.d("requireHandleDataDispatch", "data received")
+        Log.d("requireHandleDataDispatch", destination)
+        Log.d("requireHandleDataDispatch", data)
+
+
+
 
 
     }
