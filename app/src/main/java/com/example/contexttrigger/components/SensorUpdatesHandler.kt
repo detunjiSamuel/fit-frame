@@ -16,8 +16,6 @@ import java.util.*
 
 private const val NOTIFICATION_ID = 1001
 private const val NOTIFICATION_CHANNEL_ID = "Channel_Id"
-
-
 private const  val WAIT_PERIOD = 21600000 // 6hrs
 
 class SensorUpdatesHandler : Service() {
@@ -51,10 +49,8 @@ class SensorUpdatesHandler : Service() {
 
             Log.d("dev-log:SensorsUpdates:StartValidListeners", contextListener.publicName )
 
-
            val intent = Intent(this ,  contextListener.instance)
             startService(intent)
-
 
             if (contextListener.isPendingIntent) {
 
@@ -72,7 +68,6 @@ class SensorUpdatesHandler : Service() {
                 alarm.setInexactRepeating(AlarmManager.RTC_WAKEUP,
                     cal.timeInMillis, WAIT_PERIOD.toLong(),
                     pendingVersion)
-
 
             }
 
