@@ -5,7 +5,7 @@ import android.util.Log
 import com.example.contexttrigger.components.Trigger
 import com.example.contexttrigger.emitters.STEPS_RECORDING_PUBLIC_NAME
 
-class HalfWayPointSample (private val context: Context) : Trigger {
+class HalfWayPointSample () : Trigger {
 
     private var emitterNeeded =  arrayOf(STEPS_RECORDING_PUBLIC_NAME)
 
@@ -13,13 +13,16 @@ class HalfWayPointSample (private val context: Context) : Trigger {
 
     private var notificatonTitle = "HalfwayPoint"
 
+    private lateinit var _context : Context
+
 
     override fun getEmitterNeeded(): Array<String> {
         return emitterNeeded
     }
 
-    override suspend fun shouldRunNotification(): Boolean {
+    override suspend fun shouldRunNotification(context: Context): Boolean {
 
+        _context  = context
 
         var steps = getStepsCompleted()
 
@@ -34,7 +37,11 @@ class HalfWayPointSample (private val context: Context) : Trigger {
 
     }
 
-    override suspend fun handle(createdBy : String , data :String) {
+
+    override suspend fun handle(context: Context, createdBy : String , data :String) {
+
+        _context = context
+
 
         var stepsCompleted = getStepsCompleted()
 
@@ -57,7 +64,7 @@ class HalfWayPointSample (private val context: Context) : Trigger {
     }
 
     private fun updateSteps(newSteps :Int) {
-        val sharedPref = context.getSharedPreferences("myPrefs", Context.MODE_PRIVATE)
+        val sharedPref = _context.getSharedPreferences("myPrefs", Context.MODE_PRIVATE)
 
         with(sharedPref.edit()) {
             putInt("goalCompleted", newSteps)
@@ -68,7 +75,7 @@ class HalfWayPointSample (private val context: Context) : Trigger {
 
     private fun getStepsCompleted(): Int {
 
-        val sharedPref = context.getSharedPreferences("myPrefs", Context.MODE_PRIVATE)
+        val sharedPref = _context.getSharedPreferences("myPrefs", Context.MODE_PRIVATE)
 
         val goal = sharedPref.getInt("goalCompleted", -1)
 

@@ -24,13 +24,12 @@ interface Trigger {
     *
     * */
 
-    class Trigger(val context: Context)
 
     fun getEmitterNeeded() : Array<String> // who are you receiving data from
 
-    suspend fun shouldRunNotification() : Boolean // should trigger notification
+    suspend fun shouldRunNotification(context: Context) : Boolean // should trigger notification
 
-    suspend fun handle(createdBy : String, data : String) // Event_Handler
+    suspend fun handle( context:Context , createdBy : String, data : String) // Event_Handler
     // it is up to the developer to decide how to handle this
 
     fun getNotificationTitle() : String
