@@ -17,5 +17,10 @@ var contextListenersList = arrayOf<ContextListener>(
         StepsActivityRecording::class.java,
          false,
         STEPS_RECORDING_PUBLIC_NAME
+    ),
+    ContextListener(
+        LocationRecording :: class.java,
+        true,
+        LOCATION_RECORDING_PUBLIC_NAME
     )
 )

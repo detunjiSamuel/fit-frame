@@ -60,7 +60,7 @@ class StepsActivityRecording: Service() , SensorEventListener {
 
         val currentCount = event.values[0].toInt() // chatGPT says it is correct
 
-        Log.d("listeners", "New steps: $currentCount")
+        Log.d("dev-log:stepsOnSensorChanged", "New steps: $currentCount")
         if (firstRecorded) {
             totalStepsRecorded = currentCount
             firstRecorded = false

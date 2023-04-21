@@ -20,6 +20,10 @@ class WeatherRecording : Service() {
 
         Log.d("dev-log:WeatherRecording", "weather recording started")
 
+        super.onStartCommand(intent, flags, startId)
+
+
+
 
         return START_STICKY
     }
