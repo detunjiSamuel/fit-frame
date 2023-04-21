@@ -11,10 +11,14 @@ import android.hardware.SensorEventListener
 import android.hardware.SensorManager
 
 import android.util.Log
+import com.example.contexttrigger.components.SensorUpdatesHandler
 
 
+private const val PUBLIC_NAME = "STEPS_ACTIVITY_RECORDING"
 
-class Steps : Service() , SensorEventListener {
+
+class StepsActivityRecording: Service() , SensorEventListener {
+
 
     private var totalStepsRecorded = 0 // lastRecordSteps
     private var firstRecorded = true
@@ -38,7 +42,9 @@ class Steps : Service() , SensorEventListener {
 
             Log.e("listeners", "steps sensor not found")
 
+            intent.putExtra("CREATED_FOR" , PUBLIC_NAME )
 
+            intent.putExtra("DATA" , -1 )
 
             startService(intent)
             onDestroy() // stop service
@@ -64,7 +70,13 @@ class Steps : Service() , SensorEventListener {
             if (diff > maxBeforeCount) {
                 totalStepsRecorded = currentCount
 
+                val intent  = Intent (this , SensorUpdatesHandler::class.java)
 
+                intent.putExtra("CREATED_FOR" , PUBLIC_NAME )
+
+                intent.putExtra("DATA" , diff)
+
+                startService(intent)
             }
         }
     }

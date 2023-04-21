@@ -13,7 +13,7 @@ import com.example.contexttrigger.R
 
 class Notification {
 
-    private fun fireEvent(context: Context, id: Int, channelId: String, title: String, message: String) {
+     fun fireEvent(context: Context, id: Int, channelId: String, title: String, message: String) {
         var notification: NotificationCompat.Builder =
             NotificationCompat.Builder(context, channelId)
                 .setContentTitle(title)
