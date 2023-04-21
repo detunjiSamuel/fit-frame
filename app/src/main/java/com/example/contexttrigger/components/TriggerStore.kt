@@ -4,11 +4,7 @@ import android.content.Context
 import android.util.Log
 
 
-
-
-import com.example.contexttrigger.triggerSamples.HalfWayPointSample
-import com.example.contexttrigger.triggerSamples.TriggerList
-import com.example.contexttrigger.triggerSamples.testSample
+import com.example.contexttrigger.triggers.TriggerList
 
 private const val NOTIFICATION_CHANNEL_ID_Event = "REGULAR-EVENT"
 

@@ -1,4 +1,4 @@
-package com.example.contexttrigger.triggerSamples
+package com.example.contexttrigger.triggers
 
 import android.content.Context
 import android.util.Log
