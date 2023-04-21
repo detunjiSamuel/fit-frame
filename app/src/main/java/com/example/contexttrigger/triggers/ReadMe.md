@@ -22,6 +22,7 @@ These methods include:
 
 - getNotificationMessage(): A method that returns the message of the notification to be displayed.
 
-- handle(): A method that defines how trigger would process new information received.
+- handle(context , createdBy , data ): A method that defines how trigger would process 
+  new information received.
 
 
