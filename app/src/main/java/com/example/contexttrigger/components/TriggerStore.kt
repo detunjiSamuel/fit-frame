@@ -2,28 +2,44 @@ package com.example.contexttrigger.components
 
 import android.content.Context
 
+
+import com.example.contexttrigger.components.Trigger
+
+
+import com.example.contexttrigger.triggerSamples.HalfWayPointSample
+import com.example.contexttrigger.triggerSamples.testSample
+
 private const val NOTIFICATION_CHANNEL_ID_Event = "REGULAR-EVENT"
 
 
 object TriggerStore {
-    private val triggers = mutableListOf<Trigger>()
+//    private val triggers = mutableListOf<Trigger>()
+
+    // internal test
+    private val triggers = arrayOf(
+        HalfWayPointSample(),
+        testSample()
+
+    )
 
     fun registerTrigger(trigger: Trigger) {
-        triggers.add(trigger)
+//        triggers.add(trigger)
     }
 
-    fun getAllTriggers(): Array<Trigger> {
-        return triggers.toTypedArray()
+    fun getAllTriggers() : Array< Trigger >{
+//        return triggers.toTypedArray()
+        return triggers
     }
 
-    fun getActiveListeners(): Array<Trigger> {
-        // useless but not sure again
-        return triggers.toTypedArray()
-    }
+//    fun getActiveListeners(): Array<Trigger> {
+//        // useless but not sure again
+//        return triggers.toTypedArray()
+//    }
 
-    fun getActiveTriggers(): Array<Trigger> {
+    fun getActiveTriggers() : Array< Trigger > {
         // TODO add logic to filter if active/inactive
-        return triggers.toTypedArray()
+
+        return triggers
     }
 
     fun handleDataDispatch(destination : String , data: String){

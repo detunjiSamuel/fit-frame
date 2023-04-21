@@ -13,6 +13,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.ContextCompat.getSystemService
 import androidx.core.content.ContextCompat.startForegroundService
+import com.example.contexttrigger.triggerSamples.HalfWayPointSample
 
 import com.tbruyelle.rxpermissions3.RxPermissions
 
@@ -33,6 +34,8 @@ private val REQUIRED_PERMISSIONS = arrayOf(
 class TriggerManager {
     // Main Interface of for user to access/import and use it
     private val triggers = mutableListOf<Trigger>()
+
+
 
     fun registerTrigger(trigger: Trigger) {
         TriggerStore.registerTrigger(trigger)
