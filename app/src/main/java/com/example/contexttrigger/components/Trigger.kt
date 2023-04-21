@@ -30,7 +30,7 @@ interface Trigger {
 
     suspend fun shouldRunNotification() : Boolean // should trigger notification
 
-    suspend fun handle(data : String) // Event_Handler
+    suspend fun handle(createdBy : String, data : String) // Event_Handler
     // it is up to the developer to decide how to handle this
 
     fun getNotificationTitle() : String

@@ -34,7 +34,7 @@ class HalfWayPointSample (private val context: Context) : Trigger {
 
     }
 
-    override suspend fun handle(data :String) {
+    override suspend fun handle(createdBy : String , data :String) {
 
         var stepsCompleted = getStepsCompleted()
 
@@ -58,9 +58,6 @@ class HalfWayPointSample (private val context: Context) : Trigger {
 
     private fun updateSteps(newSteps :Int) {
         val sharedPref = context.getSharedPreferences("myPrefs", Context.MODE_PRIVATE)
-
-
-
 
         with(sharedPref.edit()) {
             putInt("goalCompleted", newSteps)
