@@ -1,8 +1,7 @@
 package com.example.contexttrigger.components
 
-import android.app.NotificationChannel
-import android.app.NotificationManager
-import android.app.Service
+import android.app.*
+import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
@@ -13,9 +12,13 @@ import com.example.contexttrigger.R
 import com.example.contexttrigger.emitters.contextListenersList
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import java.util.*
 
 private const val NOTIFICATION_ID = 1001
 private const val NOTIFICATION_CHANNEL_ID = "Channel_Id"
+
+
+private const  val WAIT_PERIOD = 21600000 // 6hrs
 
 class SensorUpdatesHandler : Service() {
 
@@ -48,15 +51,29 @@ class SensorUpdatesHandler : Service() {
 
             Log.d("dev-log:SensorsUpdates:StartValidListeners", contextListener.publicName )
 
-            if (contextListener.isPendingIntent) {
-                // pending Intent has unique logic i.e alarm kinds
-                // TODO add
-                // This does not have standard process
-                // will house logic in different file
 
-            }else{
-                val intent = Intent(this ,  contextListener.instance)
-                startService(intent)
+           val intent = Intent(this ,  contextListener.instance)
+            startService(intent)
+
+
+            if (contextListener.isPendingIntent) {
+
+                Log.d("dev-log:SensorsUpdates:StartValidListeners", "isPendingIntent" )
+
+                val cal = Calendar.getInstance()
+
+                val pendingVersion = PendingIntent.getService(this,
+                    0,
+                    intent,
+                    PendingIntent.FLAG_IMMUTABLE)
+
+                val alarm = getSystemService(Context.ALARM_SERVICE) as AlarmManager
+
+                alarm.setInexactRepeating(AlarmManager.RTC_WAKEUP,
+                    cal.timeInMillis, WAIT_PERIOD.toLong(),
+                    pendingVersion)
+
+
             }
 
 

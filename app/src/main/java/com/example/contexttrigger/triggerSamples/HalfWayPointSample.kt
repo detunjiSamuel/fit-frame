@@ -5,6 +5,7 @@ import android.util.Log
 import com.example.contexttrigger.components.Trigger
 import com.example.contexttrigger.emitters.STEPS_RECORDING_PUBLIC_NAME
 
+
 class HalfWayPointSample () : Trigger {
 
     private var emitterNeeded =  arrayOf(STEPS_RECORDING_PUBLIC_NAME)
@@ -26,10 +27,10 @@ class HalfWayPointSample () : Trigger {
 
         var steps = getStepsCompleted()
 
-        if (steps > 50)
-            // lazy logic
-            updateSteps((steps/2).toInt())
+        if (steps > 50) {            // lazy logic
+            updateSteps((steps / 2).toInt())
             return true
+        }
 
         return false
 
