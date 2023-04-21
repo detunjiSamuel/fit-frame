@@ -27,6 +27,10 @@ private val REQUIRED_PERMISSIONS = arrayOf(
     Manifest.permission.ACTIVITY_RECOGNITION,
 //        Manifest.permission.ACCESS_FINE_LOCATION,
 //        Manifest.permission.READ_CALENDAR
+
+    Manifest.permission.ACCESS_FINE_LOCATION,
+    Manifest.permission.ACCESS_COARSE_LOCATION
+
 )
 
 
@@ -107,8 +111,9 @@ class TriggerManager {
 
         rxPermissions.requestEachCombined(
             Manifest.permission.ACTIVITY_RECOGNITION,
-//            Manifest.permission.ACCESS_FINE_LOCATION,
 //            Manifest.permission.READ_CALENDAR,
+            Manifest.permission.ACCESS_FINE_LOCATION,
+            Manifest.permission.ACCESS_COARSE_LOCATION
         ).subscribe { permission ->
                 if (permission.granted) {
                     Log.d("dev-log:TriggerManager:requirePermissions", "permission.granted")
