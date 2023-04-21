@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Log.d("ContextTriggers", "Application started")
+        Log.d("dev-log:framework-invoked", "Application started")
 
         var triggerMangerTest = TriggerManager()
 

@@ -1,5 +1,8 @@
 package com.example.contexttrigger.components
 
+import android.content.Context
+
+
 interface Trigger {
     // individual Trigger
     // BASE LOGIC THAT WILL BE USED
@@ -21,11 +24,12 @@ interface Trigger {
     *
     * */
 
-    fun getPermissionNeeded() : String
 
-    suspend fun shouldRunNotification() : Boolean // should trigger notification
+    fun getEmitterNeeded() : Array<String> // who are you receiving data from
 
-    suspend fun handle() // Event_Handler
+    suspend fun shouldRunNotification(context: Context) : Boolean // should trigger notification
+
+    suspend fun handle( context:Context , createdBy : String, data : String) // Event_Handler
     // it is up to the developer to decide how to handle this
 
     fun getNotificationTitle() : String

@@ -1,4 +1,4 @@
-package com.example.contexttrigger.listeners
+package com.example.contexttrigger.emitters
 
 import android.app.Service
 import android.content.Intent
@@ -14,7 +14,7 @@ import android.util.Log
 import com.example.contexttrigger.components.SensorUpdatesHandler
 
 
-private const val PUBLIC_NAME = "STEPS_ACTIVITY_RECORDING"
+const val STEPS_RECORDING_PUBLIC_NAME = "STEPS_ACTIVITY_RECORDING"
 
 
 class StepsActivityRecording: Service() , SensorEventListener {
@@ -25,7 +25,7 @@ class StepsActivityRecording: Service() , SensorEventListener {
     private var maxBeforeCount = 50
 
     override fun onStartCommand(intent: Intent, flags: Int, startId: Int): Int {
-        Log.d("listeners", "steps counter started")
+        Log.d("dev-log:stepsActivityRecording", "steps counter started")
         var intent = intent
         val sensorManager = getSystemService(SENSOR_SERVICE) as SensorManager
         // counter
@@ -36,13 +36,12 @@ class StepsActivityRecording: Service() , SensorEventListener {
             //TODO ensure it's is needed by the triggerManager before registering
             sensorManager.registerListener(this, sensor, SensorManager.SENSOR_DELAY_UI)
 
-
-            Log.d("listeners", "steps sensor activated")
+            Log.d("dev-log:stepsActivityRecording", "steps sensor activated")
         } else {
 
-            Log.e("listeners", "steps sensor not found")
+            Log.e("dev-log:stepsActivityRecording", "steps sensor not found")
 
-            intent.putExtra("CREATED_FOR" , PUBLIC_NAME )
+            intent.putExtra("CREATED_FOR" , STEPS_RECORDING_PUBLIC_NAME )
 
             intent.putExtra("DATA" , -1 )
 
@@ -61,7 +60,7 @@ class StepsActivityRecording: Service() , SensorEventListener {
 
         val currentCount = event.values[0].toInt() // chatGPT says it is correct
 
-        Log.d("listeners", "New steps: $currentCount")
+        Log.d("dev-log:stepsOnSensorChanged", "New steps: $currentCount")
         if (firstRecorded) {
             totalStepsRecorded = currentCount
             firstRecorded = false
@@ -72,7 +71,7 @@ class StepsActivityRecording: Service() , SensorEventListener {
 
                 val intent  = Intent (this , SensorUpdatesHandler::class.java)
 
-                intent.putExtra("CREATED_FOR" , PUBLIC_NAME )
+                intent.putExtra("CREATED_FOR" ,  STEPS_RECORDING_PUBLIC_NAME )
 
                 intent.putExtra("DATA" , diff)
 
