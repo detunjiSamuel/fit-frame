@@ -103,12 +103,18 @@ class SensorUpdatesHandler : Service() {
                     Log.d("dev-log:SensorsUpdatesHandler", data)
 
 
-                    TriggerStore.handleDataDispatch(
-                        this,
-                        destination,
-                        data
+                    GlobalScope.launch {
 
-                    )
+                        TriggerStore.handleDataDispatch(
+                            this@SensorUpdatesHandler,
+                            destination,
+                            data
+
+                        )
+                    }
+
+
+
                 }
 
                 GlobalScope.launch {
