@@ -1,6 +1,7 @@
 package com.example.contexttrigger.samples
 
-class lazyTrigger {
+import com.example.contexttrigger.components.Trigger
 
-    // test no movement
+class lazyTrigger : Trigger {
+
 }

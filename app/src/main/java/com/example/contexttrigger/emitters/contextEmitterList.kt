@@ -1,4 +1,4 @@
-package com.example.contexttrigger.listeners
+package com.example.contexttrigger.emitters
 
 
 /***
@@ -16,6 +16,6 @@ var contextListenersList = arrayOf<ContextListener>(
     ContextListener(
         StepsActivityRecording::class.java,
          false,
-        "STEPS_ACTIVITY_RECORDING"
+        STEPS_RECORDING_PUBLIC_NAME
     )
 )

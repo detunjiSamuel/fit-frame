@@ -1,5 +1,8 @@
 package com.example.contexttrigger.components
 
+
+
+
 interface Trigger {
     // individual Trigger
     // BASE LOGIC THAT WILL BE USED
@@ -21,7 +24,8 @@ interface Trigger {
     *
     * */
 
-    fun getPermissionNeeded() : String
+
+    fun getEmitterNeeded() : Array<String> // who are you receiving data from
 
     suspend fun shouldRunNotification() : Boolean // should trigger notification
 

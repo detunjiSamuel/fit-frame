@@ -23,7 +23,7 @@
             android:enabled="true"
             android:exported="true" />
         <service
-            android:name=".listeners.StepsActivityRecording"
+            android:name=".emitters.StepsActivityRecording"
             android:enabled="true"
             android:exported="true" />
 

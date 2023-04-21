@@ -10,7 +10,7 @@ import android.os.IBinder
 import android.util.Log
 import androidx.annotation.RequiresApi
 import com.example.contexttrigger.R
-import com.example.contexttrigger.listeners.contextListenersList
+import com.example.contexttrigger.emitters.contextListenersList
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 

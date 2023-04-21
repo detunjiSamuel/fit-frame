@@ -1,4 +1,4 @@
-package com.example.contexttrigger.listeners
+package com.example.contexttrigger.emitters
 
 import android.app.Service
 import android.content.Intent
@@ -14,7 +14,7 @@ import android.util.Log
 import com.example.contexttrigger.components.SensorUpdatesHandler
 
 
-private const val PUBLIC_NAME = "STEPS_ACTIVITY_RECORDING"
+const val STEPS_RECORDING_PUBLIC_NAME = "STEPS_ACTIVITY_RECORDING"
 
 
 class StepsActivityRecording: Service() , SensorEventListener {
@@ -42,7 +42,7 @@ class StepsActivityRecording: Service() , SensorEventListener {
 
             Log.e("listeners", "steps sensor not found")
 
-            intent.putExtra("CREATED_FOR" , PUBLIC_NAME )
+            intent.putExtra("CREATED_FOR" , STEPS_RECORDING_PUBLIC_NAME )
 
             intent.putExtra("DATA" , -1 )
 
@@ -72,7 +72,7 @@ class StepsActivityRecording: Service() , SensorEventListener {
 
                 val intent  = Intent (this , SensorUpdatesHandler::class.java)
 
-                intent.putExtra("CREATED_FOR" , PUBLIC_NAME )
+                intent.putExtra("CREATED_FOR" ,  STEPS_RECORDING_PUBLIC_NAME )
 
                 intent.putExtra("DATA" , diff)
 

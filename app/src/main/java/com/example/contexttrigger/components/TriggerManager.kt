@@ -38,8 +38,6 @@ class TriggerManager {
         TriggerStore.registerTrigger(trigger)
     }
 
-
-
     @RequiresApi(Build.VERSION_CODES.O)
     fun invoke(context : Context) {
         // this will ask for permissions based on triggers registered
