@@ -75,15 +75,11 @@ class HalfWayPointSample (private val context: Context) : Trigger {
         if (goal != -1)
             return goal
 
-        if (goal > defaultGoal || goal == -1 ) {
-            updateSteps(0)
-        }
+
+        updateSteps(0)
+
 
         return 0
-
-
-
-
 
     }
 
