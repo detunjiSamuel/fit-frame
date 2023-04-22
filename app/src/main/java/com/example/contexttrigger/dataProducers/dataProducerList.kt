@@ -22,5 +22,12 @@ var dataProducerList = arrayOf<DataProducer>(
         LocationRecording :: class.java,
         true,
         LOCATION_RECORDING_PUBLIC_NAME
+    ),
+
+    DataProducer(
+        WeatherRecording :: class.java,
+        true,
+        WEATHER_RECORDING_PUBLIC_NAME
     )
+
 )
