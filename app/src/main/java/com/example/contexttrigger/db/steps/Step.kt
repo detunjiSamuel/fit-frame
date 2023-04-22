@@ -8,7 +8,8 @@ import androidx.room.PrimaryKey
 class Step(
     @PrimaryKey
     val date: String,
-    var steps: Int
+    var steps: Int,
+    var updatedAt: Long = System.currentTimeMillis()
 ) {
 
 }

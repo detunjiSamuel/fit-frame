@@ -17,6 +17,7 @@ class AddStep {
         {
 
             isValid.steps = isValid.steps + steps
+            isValid.updatedAt = System.currentTimeMillis()
 
             stepsRepository.update(isValid)
         }
