@@ -22,7 +22,7 @@ class NotificationManagerI : Notification() {
                 fireEvent(context , 1001,
                     NOTIFICATION_CHANNEL_ID_Event,
                     trigger.getNotificationTitle(),
-                    trigger.getNotificationMessage()
+                    trigger.getNotificationMessage(context)
 
 
                 )

@@ -34,6 +34,6 @@ interface Trigger {
 
     fun getNotificationTitle() : String
 
-    fun getNotificationMessage() : String
+    fun getNotificationMessage(context: Context) : String
 
 }

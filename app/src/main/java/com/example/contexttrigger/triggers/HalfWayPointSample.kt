@@ -61,7 +61,7 @@ class HalfWayPointSample () : Trigger {
         return notificatonTitle
     }
 
-    override fun getNotificationMessage(): String {
+    override fun getNotificationMessage(context: Context): String {
        return "You are half way there with: " + getStepsCompleted().toString()
     }
 
