@@ -10,6 +10,7 @@ import com.example.contexttrigger.components.SensorUpdatesHandler
 import com.android.volley.Request
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
+import com.example.contexttrigger.helpers.ApiRateLimiter
 import org.json.JSONObject
 
 const val WEATHER_RECORDING_PUBLIC_NAME = "WEATHER_ACTIVITY_RECORDING"
@@ -24,7 +25,6 @@ const val API_KEY = ""
 * */
 
 class WeatherRecording : LocationRecording() {
-
 
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
@@ -42,52 +42,61 @@ class WeatherRecording : LocationRecording() {
         Log.d("dev-log:WeatherRecording", "newLocation:newWeather")
 
 
+        if (!ApiRateLimiter(this).canMakeApiRequest()) {
+            Log.d("dev-log:WeatherRecording", "api has limit for call sorry")
 
-        val queue = Volley.newRequestQueue(this)
+            val intent = Intent(this, SensorUpdatesHandler::class.java)
 
-        val url = buildUrl(location)
+            startService(intent)
 
-        var req = StringRequest(
-            Request.Method.GET,
-            url,
-            {
-                    response ->
-
-                val obj = JSONObject(response)
-                val data = obj.getJSONArray("data")
-                    .getJSONObject(0)
-                    .getJSONObject("weather")
-
-                Log.d("dev-log:WeatherRecording", "weather request completed")
-                Log.d("dev-log:WeatherRecording", data.toString())
-
-                val intent = Intent(this, SensorUpdatesHandler::class.java)
+        } else {
 
 
-                intent.putExtra("CREATED_FOR", WEATHER_RECORDING_PUBLIC_NAME)
-                intent.putExtra("DATA", data.getInt("code").toString())
+            val queue = Volley.newRequestQueue(this)
 
-                startService(intent)
+            val url = buildUrl(location)
 
-            },
-            {
+            var req = StringRequest(
+                Request.Method.GET,
+                url,
+                { response ->
 
-                Log.d("dev-log:WeatherRecording", "Error...")
-                //TODO decide if to fire notification
-            }
+                    val obj = JSONObject(response)
+                    val data = obj.getJSONArray("data")
+                        .getJSONObject(0)
+                        .getJSONObject("weather")
 
-        )
+                    Log.d("dev-log:WeatherRecording", "weather request completed")
+                    Log.d("dev-log:WeatherRecording", data.toString())
 
-        queue.add(req)
+                    val intent = Intent(this, SensorUpdatesHandler::class.java)
+
+
+                    intent.putExtra("CREATED_FOR", WEATHER_RECORDING_PUBLIC_NAME)
+                    intent.putExtra("DATA", data.getInt("code").toString())
+
+                    startService(intent)
+
+                },
+                {
+
+                    Log.d("dev-log:WeatherRecording", "Error...")
+                    //TODO decide if to fire notification
+                }
+
+            )
+
+            queue.add(req)
+        }
 
 
     }
 
 
     private fun buildUrl(location: Location): String {
-        return "https://api.weatherbit.io/v2.0/current?lat="+
-                location.latitude +"&lon=" +
-                location.longitude + "&key="+
+        return "https://api.weatherbit.io/v2.0/current?lat=" +
+                location.latitude + "&lon=" +
+                location.longitude + "&key=" +
                 API_KEY
     }
 }
