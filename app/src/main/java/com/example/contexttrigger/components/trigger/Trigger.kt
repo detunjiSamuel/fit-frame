@@ -1,4 +1,4 @@
-package com.example.contexttrigger.components
+package com.example.contexttrigger.components.trigger
 
 import android.content.Context
 
@@ -25,7 +25,7 @@ interface Trigger {
     * */
 
 
-    fun getEmitterNeeded() : Array<String> // who are you receiving data from
+    fun getDataProducerNeeded() : Array<String> // who are you receiving data from
 
     suspend fun shouldRunNotification(context: Context) : Boolean // should trigger notification
 

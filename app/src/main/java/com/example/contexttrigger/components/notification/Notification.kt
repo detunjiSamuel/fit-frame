@@ -1,4 +1,4 @@
-package com.example.contexttrigger.components
+package com.example.contexttrigger.components.notification
 
 
 import android.app.NotificationManager
@@ -11,7 +11,7 @@ import androidx.core.app.NotificationCompat
 import com.example.contexttrigger.R
 
 
-class Notification {
+open class Notification {
 
      fun fireEvent(context: Context, id: Int, channelId: String, title: String, message: String) {
         var notification: NotificationCompat.Builder =

@@ -1,4 +1,4 @@
-package com.example.contexttrigger.emitters
+package com.example.contexttrigger.dataProducers
 
 import android.Manifest
 import android.app.Service
@@ -13,15 +13,13 @@ import android.location.LocationManager
 import android.util.Log
 import androidx.core.app.ActivityCompat
 import com.example.contexttrigger.components.SensorUpdatesHandler
+import com.example.contexttrigger.helpers.locationHelper
 
 
-/** P.S
- * The onLocationChanged method is not standing alone as an overridden method
- * because it is already an overridden method of the LocationListener interface.
- * The LocationRecording class implements this interface by adding LocationListener
- * to its declaration, which means it is required to implement all methods of the
- * LocationListener interface. Therefore, the onLocationChanged method is implemented
- * as part of the LocationListener interface implementation in the LocationRecording class
+/**
+ *  USAGE:
+ *      remember to use locationHelper().StringToLocation(string)
+ *      when reading the data value
  *
  * */
 
@@ -34,7 +32,7 @@ private const val LOCATION_REFRESH_DISTANCE = 1000
 const val LOCATION_RECORDING_PUBLIC_NAME = "LOCATION_ACTIVITY_RECORDING"
 
 
-class LocationRecording : Service() , LocationListener {
+open class LocationRecording : Service() , LocationListener {
 
 
 
@@ -61,6 +59,9 @@ class LocationRecording : Service() , LocationListener {
                 Manifest.permission.ACCESS_COARSE_LOCATION
             ) != PackageManager.PERMISSION_GRANTED
         ) {
+
+            Log.d("dev-log:locationRecording", "cannot get location info .. ")
+
             val intent  = Intent (this , SensorUpdatesHandler::class.java)
 
             intent.putExtra("CREATED_FOR" , LOCATION_RECORDING_PUBLIC_NAME )
@@ -90,11 +91,14 @@ class LocationRecording : Service() , LocationListener {
 
         Log.d("dev-log:locationRecording:onLocationChange", "New location")
 
+        Log.d("dev-log:locationRecording:onLocationChange",
+            "New location: " + location.latitude + ", " + location.longitude)
+
         val intent  = Intent (this , SensorUpdatesHandler::class.java)
 
         intent.putExtra("CREATED_FOR" , LOCATION_RECORDING_PUBLIC_NAME )
 
-        intent.putExtra("DATA", location)
+        intent.putExtra("DATA", locationHelper().locationToString(location))
 
         startService(intent)
 

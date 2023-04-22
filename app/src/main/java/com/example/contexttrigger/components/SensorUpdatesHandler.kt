@@ -9,15 +9,16 @@ import android.os.IBinder
 import android.util.Log
 import androidx.annotation.RequiresApi
 import com.example.contexttrigger.R
-import com.example.contexttrigger.emitters.contextListenersList
+import com.example.contexttrigger.components.notification.NotificationManagerI
+import com.example.contexttrigger.components.trigger.TriggerManager
+import com.example.contexttrigger.components.trigger.TriggerStore
+import com.example.contexttrigger.dataProducers.dataProducerList
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import java.util.*
 
 private const val NOTIFICATION_ID = 1001
 private const val NOTIFICATION_CHANNEL_ID = "Channel_Id"
-
-
 private const  val WAIT_PERIOD = 21600000 // 6hrs
 
 class SensorUpdatesHandler : Service() {
@@ -46,15 +47,13 @@ class SensorUpdatesHandler : Service() {
 
         // Trigger should have active Listeners
 
-        for (contextListener in contextListenersList){
+        for (contextListener in dataProducerList){
             //TODO enforce check to see if it is needed
 
             Log.d("dev-log:SensorsUpdates:StartValidListeners", contextListener.publicName )
 
-
            val intent = Intent(this ,  contextListener.instance)
             startService(intent)
-
 
             if (contextListener.isPendingIntent) {
 
@@ -72,7 +71,6 @@ class SensorUpdatesHandler : Service() {
                 alarm.setInexactRepeating(AlarmManager.RTC_WAKEUP,
                     cal.timeInMillis, WAIT_PERIOD.toLong(),
                     pendingVersion)
-
 
             }
 
@@ -108,17 +106,24 @@ class SensorUpdatesHandler : Service() {
                     Log.d("dev-log:SensorsUpdatesHandler", data)
 
 
-                    TriggerStore.handleDataDispatch(
-                        destination,
-                        data
+                    GlobalScope.launch {
 
-                    )
+                        TriggerStore.handleDataDispatch(
+                            this@SensorUpdatesHandler,
+                            destination,
+                            data
+
+                        )
+                    }
+
+
+
                 }
 
-                GlobalScope.launch {
+             GlobalScope.launch {
                     Log.d("dev-log:SensorsUpdatesHandler", "dispatch done")
                     Log.d("dev-log:SensorsUpdatesHandler", "Notification checking")
-                    TriggerStore.runNotifications(this@SensorUpdatesHandler)
+                    NotificationManagerI().runRequiredNotifications(this@SensorUpdatesHandler)
                 }
             }
 
@@ -132,14 +137,8 @@ class SensorUpdatesHandler : Service() {
 
             // CHECK FOR TRIGGER NOTIFICATION
 
-            /*
-            * GET ACTIVE TRIGGERS
-            *   RUN SHOULDSHOWNOTIFICATION
-            *       PASS CONTROL TO NOTIFICATION HANDLER
-            * */
-
             GlobalScope.launch {
-                TriggerStore.runNotifications(this@SensorUpdatesHandler)
+                NotificationManagerI().runRequiredNotifications(this@SensorUpdatesHandler)
             }
 
             // COULD BE USEFUL

@@ -8,7 +8,7 @@
     <uses-permission android:name="android.permission.READ_CALENDAR" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-
+:ww
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -18,12 +18,29 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Contexttrigger"
         tools:targetApi="31">
+        <activity
+            android:name=".ConfigActivity"
+            android:exported="true"
+            android:label="@string/title_activity_config"
+            android:theme="@style/Theme.Contexttrigger"
+>
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
+
+
+
         <service
-            android:name=".LocationRecording"
+            android:name=".dataProducers.LocationRecording"
             android:enabled="true"
-            android:exported="true"></service>
+            android:exported="true" />
         <service
-            android:name=".WeatherRecording"
+            android:name=".dataProducers.WeatherRecording"
             android:enabled="true"
             android:exported="true" />
         <service
@@ -31,24 +48,13 @@
             android:enabled="true"
             android:exported="true" />
         <service
-            android:name=".emitters.StepsActivityRecording"
+            android:name=".dataProducers.StepsActivityRecording"
             android:enabled="true"
             android:exported="true" />
 
-        <activity
-            android:name=".MainActivity"
-            android:exported="true"
-            android:label="@string/title_activity_main"
-            android:theme="@style/Theme.Contexttrigger.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
 
         <service
-            android:name=".components.TriggerManager"
+            android:name=".components.trigger.TriggerManager"
             android:exported="false" />
     </application>
 

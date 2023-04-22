@@ -1,9 +1,9 @@
-package com.example.contexttrigger.triggerSamples
+package com.example.contexttrigger.triggers
 
 import android.content.Context
 import android.util.Log
-import com.example.contexttrigger.components.Trigger
-import com.example.contexttrigger.emitters.STEPS_RECORDING_PUBLIC_NAME
+import com.example.contexttrigger.components.trigger.Trigger
+import com.example.contexttrigger.dataProducers.STEPS_RECORDING_PUBLIC_NAME
 
 
 class HalfWayPointSample () : Trigger {
@@ -17,7 +17,7 @@ class HalfWayPointSample () : Trigger {
     private lateinit var _context : Context
 
 
-    override fun getEmitterNeeded(): Array<String> {
+    override fun getDataProducerNeeded(): Array<String> {
         return emitterNeeded
     }
 
@@ -41,6 +41,7 @@ class HalfWayPointSample () : Trigger {
 
     override suspend fun handle(context: Context, createdBy : String , data :String) {
 
+
         _context = context
 
 
@@ -50,8 +51,8 @@ class HalfWayPointSample () : Trigger {
 
         updateSteps(newSteps)
 
-        Log.d("requireHalfWayPoint" , "added")
-        Log.d("requireHalfWayPoint" , newSteps.toString())
+        Log.d(" dev-log:HalfWayPoint" , "added")
+        Log.d("dev-log:HalfWayPoint" , newSteps.toString())
 
 
     }
