@@ -39,6 +39,9 @@ class WeatherRecording : LocationRecording() {
 
     override fun onLocationChanged(location: Location) {
 
+        Log.d("dev-log:WeatherRecording", "newLocation:newWeather")
+
+
 
         val queue = Volley.newRequestQueue(this)
 
