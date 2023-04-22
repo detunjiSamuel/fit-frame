@@ -16,6 +16,13 @@ const val WEATHER_RECORDING_PUBLIC_NAME = "WEATHER_ACTIVITY_RECORDING"
 
 const val API_KEY = ""
 
+/*
+* USAGE :
+*   when data is between 800 to 806 :  GOOD WEATHER
+*   else:
+*       BAD WEATHER
+* */
+
 class WeatherRecording : LocationRecording() {
 
 

@@ -16,13 +16,10 @@ import com.example.contexttrigger.components.SensorUpdatesHandler
 import com.example.contexttrigger.helpers.locationHelper
 
 
-/** P.S IGNORE : GPT GAVE ME THIS FOR SOMETHING ELSE
- * The onLocationChanged method is not standing alone as an overridden method
- * because it is already an overridden method of the LocationListener interface.
- * The LocationRecording class implements this interface by adding LocationListener
- * to its declaration, which means it is required to implement all methods of the
- * LocationListener interface. Therefore, the onLocationChanged method is implemented
- * as part of the LocationListener interface implementation in the LocationRecording class
+/**
+ *  USAGE:
+ *      remember to use locationHelper().StringToLocation(string)
+ *      when reading the data value
  *
  * */
 
