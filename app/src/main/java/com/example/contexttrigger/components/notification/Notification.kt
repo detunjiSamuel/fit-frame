@@ -27,7 +27,7 @@ open class Notification {
     }
 
     // Fire event that has a notification built by the caller
-    fun fireEvent(context: Context, id: Int, channelId: String, notification: NotificationCompat.Builder) {
+    fun fireEvent(context: Context, id: Int, notification: NotificationCompat.Builder) {
         val notify: NotificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
         Log.d("dev-log:notificationHandler", "Notification Sent")
