@@ -13,6 +13,7 @@ import android.location.LocationManager
 import android.util.Log
 import androidx.core.app.ActivityCompat
 import com.example.contexttrigger.components.SensorUpdatesHandler
+import com.example.contexttrigger.helpers.locationHelper
 
 
 /** P.S
@@ -93,11 +94,14 @@ class LocationRecording : Service() , LocationListener {
 
         Log.d("dev-log:locationRecording:onLocationChange", "New location")
 
+        Log.d("dev-log:locationRecording:onLocationChange",
+            "New location: " + location.latitude + ", " + location.longitude)
+
         val intent  = Intent (this , SensorUpdatesHandler::class.java)
 
         intent.putExtra("CREATED_FOR" , LOCATION_RECORDING_PUBLIC_NAME )
 
-        intent.putExtra("DATA", location)
+        intent.putExtra("DATA", locationHelper().locationToString(location))
 
         startService(intent)
 

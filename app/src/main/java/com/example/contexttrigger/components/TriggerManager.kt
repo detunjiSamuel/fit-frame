@@ -22,7 +22,6 @@ private const val NOTIFICATION_CHANNEL_ID_Event = "REGULAR-EVENT"
 
 private val REQUIRED_PERMISSIONS = arrayOf(
     Manifest.permission.ACTIVITY_RECOGNITION,
-//        Manifest.permission.ACCESS_FINE_LOCATION,
 //        Manifest.permission.READ_CALENDAR
 
     Manifest.permission.ACCESS_FINE_LOCATION,
