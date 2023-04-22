@@ -16,7 +16,7 @@ import com.example.contexttrigger.components.SensorUpdatesHandler
 import com.example.contexttrigger.helpers.locationHelper
 
 
-/** P.S
+/** P.S IGNORE : GPT GAVE ME THIS FOR SOMETHING ELSE
  * The onLocationChanged method is not standing alone as an overridden method
  * because it is already an overridden method of the LocationListener interface.
  * The LocationRecording class implements this interface by adding LocationListener
@@ -35,7 +35,7 @@ private const val LOCATION_REFRESH_DISTANCE = 1000
 const val LOCATION_RECORDING_PUBLIC_NAME = "LOCATION_ACTIVITY_RECORDING"
 
 
-class LocationRecording : Service() , LocationListener {
+open class LocationRecording : Service() , LocationListener {
 
 
 
