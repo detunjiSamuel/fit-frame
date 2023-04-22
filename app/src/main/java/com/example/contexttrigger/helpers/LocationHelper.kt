@@ -3,7 +3,7 @@ package com.example.contexttrigger.helpers
 import android.location.Location
 
 
-class locationHelper {
+class LocationHelper {
 
     fun locationToString(location: Location): String {
         return "${location.latitude},${location.longitude}"

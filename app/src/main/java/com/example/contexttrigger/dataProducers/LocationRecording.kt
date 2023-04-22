@@ -13,12 +13,12 @@ import android.location.LocationManager
 import android.util.Log
 import androidx.core.app.ActivityCompat
 import com.example.contexttrigger.components.SensorUpdatesHandler
-import com.example.contexttrigger.helpers.locationHelper
+import com.example.contexttrigger.helpers.LocationHelper
 
 
 /**
  *  USAGE:
- *      remember to use locationHelper().StringToLocation(string)
+ *      remember to use LocationHelper().StringToLocation(string)
  *      when reading the data value
  *
  * */
@@ -98,7 +98,7 @@ open class LocationRecording : Service() , LocationListener {
 
         intent.putExtra("CREATED_FOR" , LOCATION_RECORDING_PUBLIC_NAME )
 
-        intent.putExtra("DATA", locationHelper().locationToString(location))
+        intent.putExtra("DATA", LocationHelper().locationToString(location))
 
         startService(intent)
 
