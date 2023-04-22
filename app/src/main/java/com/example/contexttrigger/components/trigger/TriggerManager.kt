@@ -1,4 +1,4 @@
-package com.example.contexttrigger.components
+package com.example.contexttrigger.components.trigger
 
 import android.Manifest
 import android.app.NotificationChannel
@@ -11,9 +11,8 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-
+import com.example.contexttrigger.components.SensorUpdatesHandler
 import com.tbruyelle.rxpermissions3.RxPermissions
-
 
 
 private const val NOTIFICATION_CHANNEL_ID_RUNNING = "Channel_Id"
@@ -22,14 +21,10 @@ private const val NOTIFICATION_CHANNEL_ID_Event = "REGULAR-EVENT"
 
 private val REQUIRED_PERMISSIONS = arrayOf(
     Manifest.permission.ACTIVITY_RECOGNITION,
-//        Manifest.permission.READ_CALENDAR
-
     Manifest.permission.ACCESS_FINE_LOCATION,
     Manifest.permission.ACCESS_COARSE_LOCATION
 
 )
-
-
 
 class TriggerManager {
     // Main Interface of for user to access/import and use it
@@ -49,7 +44,7 @@ class TriggerManager {
         // start the sensorUpdateHandler
         Log.d("dev-log:TriggerManager:sensorUpdated", "started")
 
-        val intent = Intent(context , SensorUpdatesHandler::class.java )
+        val intent = Intent(context, SensorUpdatesHandler::class.java)
 
         ContextCompat.startForegroundService(context.applicationContext, intent)
 

@@ -54,7 +54,7 @@
 
 
         <service
-            android:name=".components.TriggerManager"
+            android:name=".components.trigger.TriggerManager"
             android:exported="false" />
     </application>
 

@@ -1,17 +1,12 @@
-package com.example.contexttrigger.components
+package com.example.contexttrigger.components.trigger
 
 import android.content.Context
 import android.util.Log
-
-
 import com.example.contexttrigger.triggers.TriggerList
-
-private const val NOTIFICATION_CHANNEL_ID_Event = "REGULAR-EVENT"
-
 
 object TriggerStore {
 
-    fun getAllTriggers() : Array< Trigger >{
+    fun getAllTriggers() : Array<Trigger>{
         return TriggerList
     }
 
@@ -20,7 +15,7 @@ object TriggerStore {
 //        return triggers.toTypedArray()
 //    }
 
-    private fun getActiveTriggers() : Array< Trigger > {
+    fun getActiveTriggers() : Array<Trigger> {
         // TODO add logic to filter if active/inactive
 
         return TriggerList
@@ -56,24 +51,4 @@ object TriggerStore {
 
     }
 
-     suspend fun runNotifications(context : Context) {
-
-        for (trigger in getActiveTriggers())
-        {
-
-            if (trigger.shouldRunNotification(context))
-            {
-                // REGULAR- EVENT CHANNEL HAS BEEN CREATED WITH ITS SETTINGS EARLIER
-                Notification().fireEvent(context , 1001,
-                    NOTIFICATION_CHANNEL_ID_Event,
-                    trigger.getNotificationTitle(),
-                    trigger.getNotificationMessage()
-
-
-                )
-            }
-        }
-
-
-    }
 }

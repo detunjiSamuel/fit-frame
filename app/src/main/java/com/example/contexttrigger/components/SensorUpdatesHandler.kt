@@ -9,8 +9,10 @@ import android.os.IBinder
 import android.util.Log
 import androidx.annotation.RequiresApi
 import com.example.contexttrigger.R
+import com.example.contexttrigger.components.notification.NotificationManagerI
+import com.example.contexttrigger.components.trigger.TriggerManager
+import com.example.contexttrigger.components.trigger.TriggerStore
 import com.example.contexttrigger.dataProducers.dataProducerList
-import com.example.contexttrigger.helpers.locationHelper
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import java.util.*
@@ -121,7 +123,7 @@ class SensorUpdatesHandler : Service() {
              GlobalScope.launch {
                     Log.d("dev-log:SensorsUpdatesHandler", "dispatch done")
                     Log.d("dev-log:SensorsUpdatesHandler", "Notification checking")
-                    TriggerStore.runNotifications(this@SensorUpdatesHandler)
+                    NotificationManagerI().runRequiredNotifications(this@SensorUpdatesHandler)
                 }
             }
 
@@ -135,14 +137,8 @@ class SensorUpdatesHandler : Service() {
 
             // CHECK FOR TRIGGER NOTIFICATION
 
-            /*
-            * GET ACTIVE TRIGGERS
-            *   RUN SHOULDSHOWNOTIFICATION
-            *       PASS CONTROL TO NOTIFICATION HANDLER
-            * */
-
             GlobalScope.launch {
-                TriggerStore.runNotifications(this@SensorUpdatesHandler)
+                NotificationManagerI().runRequiredNotifications(this@SensorUpdatesHandler)
             }
 
             // COULD BE USEFUL
