@@ -1,6 +1,7 @@
 package com.example.contexttrigger.dataProducers
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.app.Service
 import android.content.Intent
 import android.os.IBinder
@@ -41,51 +42,40 @@ open class LocationRecording : Service() , LocationListener {
     }
 
 
+    @SuppressLint("MissingPermission")
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
-
-        Log.d("dev-log:locationRecording", "starting location recording .. ")
-
+        Log.d("dev-log:locationRecording", "starting location recording...")
         super.onStartCommand(intent, flags, startId)
-
-        var locationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
-
-        // EDITOR FORCED THIS CONDITION
-
-        if (ActivityCompat.checkSelfPermission(
-                this,
-                Manifest.permission.ACCESS_FINE_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
-                this,
-                Manifest.permission.ACCESS_COARSE_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED
-        ) {
-
-            Log.d("dev-log:locationRecording", "cannot get location info .. ")
-
-            val intent  = Intent (this , SensorUpdatesHandler::class.java)
-
-            intent.putExtra("CREATED_FOR" , LOCATION_RECORDING_PUBLIC_NAME )
-
-            intent.putExtra("DATA" , -1 )
-
-            startService(intent)
-
-            onDestroy()
-
-        }
-
-        else
-        {
+        if (hasLocationPermissions()) {
+            val locationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
             locationManager.requestLocationUpdates(
                 LocationManager.GPS_PROVIDER,
                 LOCATION_REFRESH_TIME.toLong(),
                 LOCATION_REFRESH_DISTANCE.toFloat(),
                 this
             )
+        } else {
+            Log.d("dev-log:locationRecording", "cannot get location info...")
+            val intent = Intent(this, SensorUpdatesHandler::class.java).apply {
+                putExtra("CREATED_FOR", LOCATION_RECORDING_PUBLIC_NAME)
+                putExtra("DATA", -1)
+            }
+            startService(intent)
+            onDestroy()
         }
-
         return START_STICKY
     }
+
+    private fun hasLocationPermissions(): Boolean {
+        return ActivityCompat.checkSelfPermission(
+            this,
+            Manifest.permission.ACCESS_FINE_LOCATION
+        ) == PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+            this,
+            Manifest.permission.ACCESS_COARSE_LOCATION
+        ) == PackageManager.PERMISSION_GRANTED
+    }
+
 
     override fun onLocationChanged(location: Location) {
 
