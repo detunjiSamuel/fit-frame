@@ -11,6 +11,7 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.example.contexttrigger.components.sensorManager.SensorController
 import com.example.contexttrigger.components.sensorManager.SensorUpdatesHandler
 import com.tbruyelle.rxpermissions3.RxPermissions
 
@@ -29,9 +30,14 @@ private val REQUIRED_PERMISSIONS = arrayOf(
 class TriggerManager {
     // Main Interface of for user to access/import and use it
 
+
+    private lateinit var _context : Context
+
     @RequiresApi(Build.VERSION_CODES.O)
     fun invoke(context : Context) {
         // this will ask for permissions based on triggers registered
+
+        _context =  context
 
         // create notification channels
         createNotificationChannels(context)
@@ -93,25 +99,47 @@ class TriggerManager {
 
         var rxPermissions = RxPermissions(activity)
 
-        rxPermissions.requestEachCombined(
+        rxPermissions.requestEach(
             Manifest.permission.ACTIVITY_RECOGNITION,
-//            Manifest.permission.READ_CALENDAR,
             Manifest.permission.ACCESS_FINE_LOCATION,
             Manifest.permission.ACCESS_COARSE_LOCATION
         ).subscribe { permission ->
                 if (permission.granted) {
                     Log.d("dev-log:TriggerManager:requirePermissions", "permission.granted")
-//                    val weather = Intent(this, WeatherLocationData::class.java)
-//                    startService(weather)
+
+
+                    val intent = Intent(_context , SensorController::class.java)
+
+                    intent.putExtra("IS_REPORTING" , "PERMISSION_GRANTED" )
+
+                    intent.putExtra("DATA" , permission.name)
+
+                    _context.startService(intent)
+
                 }
-                if (!permission.granted) {
+                else  {
+
+                    val intent = Intent(_context , SensorController::class.java)
+
+                    intent.putExtra("IS_REPORTING" , "PERMISSION_NOT_GRANTED" )
+
+                    intent.putExtra("DATA" , permission.name)
+
+                    _context.startService(intent)
+
+
+
                     Log.d("dev-log:TriggerManager:requirePermissions", "permission.not-granted")
 
-                    ActivityCompat.requestPermissions(
-                        activity,
-                        REQUIRED_PERMISSIONS,
-                        100
-                    )
+                    if (permission.shouldShowRequestPermissionRationale)
+                    {
+                        ActivityCompat.requestPermissions(
+                            activity,
+                            REQUIRED_PERMISSIONS,
+                            100
+                        )
+                    }
+
                 }
             }
 
