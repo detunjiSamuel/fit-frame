@@ -11,6 +11,7 @@ import android.hardware.SensorEventListener
 import android.hardware.SensorManager
 
 import android.util.Log
+import com.example.contexttrigger.components.sensorManager.SensorController
 import com.example.contexttrigger.components.sensorManager.SensorUpdatesHandler
 
 
@@ -26,7 +27,7 @@ class StepsActivityRecording: Service() , SensorEventListener {
 
     override fun onStartCommand(intent: Intent, flags: Int, startId: Int): Int {
         Log.d("dev-log:stepsActivityRecording", "steps counter started")
-        var intent = intent
+
         val sensorManager = getSystemService(SENSOR_SERVICE) as SensorManager
         // counter
         val sensor = sensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER)
@@ -39,11 +40,17 @@ class StepsActivityRecording: Service() , SensorEventListener {
             Log.d("dev-log:stepsActivityRecording", "steps sensor activated")
         } else {
 
+
             Log.e("dev-log:stepsActivityRecording", "steps sensor not found")
 
-            intent.putExtra("CREATED_FOR" , STEPS_RECORDING_PUBLIC_NAME )
+            Log.e("dev-log:stepsActivityRecording", "reporting internal issue")
 
-            intent.putExtra("DATA" , -1 )
+            val intent = Intent(this , SensorController::class.java)
+
+            intent.putExtra("IS_REPORTING" , "INTERNAL_FAILURE" )
+
+
+            intent.putExtra("DATA" , STEPS_RECORDING_PUBLIC_NAME )
 
             startService(intent)
             onDestroy() // stop service

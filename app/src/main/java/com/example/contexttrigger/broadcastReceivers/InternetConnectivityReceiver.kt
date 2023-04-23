@@ -3,11 +3,16 @@ package com.example.contexttrigger.broadcastReceivers
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import com.example.contexttrigger.components.sensorManager.SensorController
 
 class InternetConnectivityReceiver : BroadcastReceiver() {
 
     override fun onReceive(context: Context, intent: Intent) {
+
+
+        Log.d("dev-log:dev-log:InternetConnectivityReceiver", "onReceive")
+
 
 
         val resourceName = "airplane-mode"
