@@ -29,31 +29,20 @@ class StepsActivityRecording: Service() , SensorEventListener {
         Log.d("dev-log:stepsActivityRecording", "steps counter started")
 
         val sensorManager = getSystemService(SENSOR_SERVICE) as SensorManager
-        // counter
         val sensor = sensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER)
 
         if (sensor != null) {
-
-            //TODO ensure it's is needed by the triggerManager before registering
             sensorManager.registerListener(this, sensor, SensorManager.SENSOR_DELAY_UI)
-
             Log.d("dev-log:stepsActivityRecording", "steps sensor activated")
         } else {
-
-
             Log.e("dev-log:stepsActivityRecording", "steps sensor not found")
-
             Log.e("dev-log:stepsActivityRecording", "reporting internal issue")
 
-            val intent = Intent(this , SensorController::class.java)
-
-            intent.putExtra("IS_REPORTING" , "INTERNAL_FAILURE" )
-
-
-            intent.putExtra("DATA" , STEPS_RECORDING_PUBLIC_NAME )
-
+            val intent = Intent(this, SensorController::class.java)
+            intent.putExtra("IS_REPORTING", "INTERNAL_FAILURE")
+            intent.putExtra("DATA", STEPS_RECORDING_PUBLIC_NAME)
             startService(intent)
-            onDestroy() // stop service
+            stopSelf() // stop service
         }
         return START_STICKY
     }
