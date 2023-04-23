@@ -80,7 +80,7 @@ class Weather : Trigger {
 
     }
 
-    override fun getNotificationTitle(): String {
+    override suspend fun getNotificationTitle(context: Context): String {
         return NOTIFICATION_TITLE
     }
 
