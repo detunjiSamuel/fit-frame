@@ -31,7 +31,7 @@ class NotificationManagerI : Notification() {
             {
                 // REGULAR- EVENT CHANNEL HAS BEEN CREATED WITH ITS SETTINGS EARLIER
 
-                var messageReceived = trigger.getNotificationTitle()
+                var messageReceived = trigger.getNotificationTitle(context)
 
                 if ( messageReceived != NOT_IMPLEMENTED_TRIGGER_NOTIFICATION_MESSAGE
                     && sameMessageNotSentRecently(messageReceived))
@@ -39,11 +39,11 @@ class NotificationManagerI : Notification() {
                 {
                     fireEvent(context , 1001,
                         NOTIFICATION_CHANNEL_ID_Event,
-                        trigger.getNotificationTitle(),
+                        trigger.getNotificationTitle(context),
                         trigger.getNotificationMessage(context)
                     )
 
-                    registerNotificationMessage(messageReceived)
+                    registerNotificationMessage(trigger.getNotificationTitle(context))
 
                     registerSentNotification()
 

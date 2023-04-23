@@ -38,9 +38,9 @@ interface Trigger {
     suspend fun handle( context:Context , createdBy : String, data : String) // Event_Handler
     // it is up to the developer to decide how to handle this
 
-    fun getNotificationTitle() : String = NOT_IMPLEMENTED_TRIGGER_NOTIFICATION_MESSAGE
+    suspend fun getNotificationTitle(context: Context) : String = NOT_IMPLEMENTED_TRIGGER_NOTIFICATION_MESSAGE
 
-    fun getNotificationMessage(context: Context) : String
+    suspend fun getNotificationMessage(context: Context) : String
 
 
     // Support custom notification

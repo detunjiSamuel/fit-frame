@@ -84,7 +84,7 @@ class Weather : Trigger {
         return NOTIFICATION_TITLE
     }
 
-    override fun getNotificationMessage(context: Context): String {
+    override suspend fun getNotificationMessage(context: Context): String {
 
         val sharedPref = context.getSharedPreferences(SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE)
 
