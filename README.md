@@ -2,4 +2,4 @@
 Contextual Trigger Framework
 
 
-![alt text](https://github.com/detunjiSamuel/fit-frame/blob/main/ct-framework.drawioi.png?raw=true)
+![alt text](https://github.com/detunjiSamuel/fit-frame/blob/main/CT-ARCHITECTURE-1.drawio.png?raw=true)
