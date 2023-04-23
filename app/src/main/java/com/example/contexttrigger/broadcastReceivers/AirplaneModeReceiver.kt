@@ -16,7 +16,7 @@ class AirplaneModeReceiver : BroadcastReceiver() {
             Intent.ACTION_AIRPLANE_MODE_CHANGED -> {
                 val isAirplaneModeOn = intent.getBooleanExtra("state", false)
 
-                Log.d("dev-log::AirplaneModeReceiver", "onReceive")
+                Log.d("dev-log:AirplaneModeReceiver", "onReceive")
 
                 val resourceName = "airplane-mode"
                 val data = "$resourceName|${if (isAirplaneModeOn) "NO" else "YES"}"
@@ -27,7 +27,7 @@ class AirplaneModeReceiver : BroadcastReceiver() {
                 context.startService(serviceIntent)
             }
         }
-
+    }
 
 
 
