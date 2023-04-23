@@ -1,6 +1,7 @@
 package com.example.contexttrigger.components.notification
 
 import android.content.Context
+import com.example.contexttrigger.components.trigger.NOT_IMPLEMENTED_TRIGGER_NOTIFICATION_MESSAGE
 
 
 import com.example.contexttrigger.components.trigger.TriggerController
@@ -25,16 +26,26 @@ class NotificationManagerI : Notification() {
         for (trigger in TriggerController.getActiveTriggers())
         {
 
+
             if (trigger.shouldRunNotification(context))
             {
                 // REGULAR- EVENT CHANNEL HAS BEEN CREATED WITH ITS SETTINGS EARLIER
-                fireEvent(context , 1001,
-                    NOTIFICATION_CHANNEL_ID_Event,
-                    trigger.getNotificationTitle(),
-                    trigger.getNotificationMessage(context)
 
+                var messageReceived = trigger.getNotificationTitle()
 
-                )
+                if (messageReceived != NOT_IMPLEMENTED_TRIGGER_NOTIFICATION_MESSAGE)
+
+                {
+                    fireEvent(context , 1001,
+                        NOTIFICATION_CHANNEL_ID_Event,
+                        trigger.getNotificationTitle(),
+                        trigger.getNotificationMessage(context)
+                    )
+
+                    continue
+                }
+                fireEvent(context , 1001 ,trigger.getCustomNotification(context))
+
             }
         }
 
