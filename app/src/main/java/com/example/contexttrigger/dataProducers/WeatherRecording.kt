@@ -1,11 +1,9 @@
 package com.example.contexttrigger.dataProducers
 
-import android.app.Service
 import android.content.Intent
 import android.location.Location
-import android.os.IBinder
 import android.util.Log
-import com.example.contexttrigger.components.SensorUpdatesHandler
+import com.example.contexttrigger.components.sensorManager.SensorUpdatesHandler
 
 import com.android.volley.Request
 import com.android.volley.toolbox.StringRequest

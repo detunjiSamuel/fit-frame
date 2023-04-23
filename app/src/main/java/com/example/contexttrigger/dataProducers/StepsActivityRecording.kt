@@ -11,7 +11,7 @@ import android.hardware.SensorEventListener
 import android.hardware.SensorManager
 
 import android.util.Log
-import com.example.contexttrigger.components.SensorUpdatesHandler
+import com.example.contexttrigger.components.sensorManager.SensorUpdatesHandler
 
 
 const val STEPS_RECORDING_PUBLIC_NAME = "STEPS_ACTIVITY_RECORDING"

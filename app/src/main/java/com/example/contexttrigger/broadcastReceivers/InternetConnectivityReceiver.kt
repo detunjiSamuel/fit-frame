@@ -8,10 +8,11 @@ class InternetConnectivityReceiver : BroadcastReceiver() {
 
     override fun onReceive(context: Context, intent: Intent) {
 
-        val action = intent.action
-        if (action == "INTERNET") {
+
+        val hasInternet = intent.getStringExtra("DATA")
+        if (hasInternet == "YES") {
             // Do something when internet is connected
-        } else if (action == "NO_INTERNET") {
+        } else  {
             // Do something when internet is disconnected
         }
     }

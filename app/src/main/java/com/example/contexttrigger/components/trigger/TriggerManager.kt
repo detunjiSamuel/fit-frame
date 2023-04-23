@@ -11,7 +11,7 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import com.example.contexttrigger.components.SensorUpdatesHandler
+import com.example.contexttrigger.components.sensorManager.SensorUpdatesHandler
 import com.tbruyelle.rxpermissions3.RxPermissions
 
 

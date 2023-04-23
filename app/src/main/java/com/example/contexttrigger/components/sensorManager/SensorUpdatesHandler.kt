@@ -1,4 +1,4 @@
-package com.example.contexttrigger.components
+package com.example.contexttrigger.components.sensorManager
 
 import android.app.*
 import android.content.Context
