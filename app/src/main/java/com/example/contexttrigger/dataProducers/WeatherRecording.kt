@@ -41,8 +41,10 @@ class WeatherRecording : LocationRecording() {
 
         Log.d("dev-log:WeatherRecording", "newLocation:newWeather")
 
+        val apiRateLimiter = ApiRateLimiter(this)
 
-        if (!ApiRateLimiter(this).canMakeApiRequest()) {
+
+        if (!apiRateLimiter.canMakeApiRequest()) {
             Log.d("dev-log:WeatherRecording", "api has limit for call sorry")
 
             val intent = Intent(this, SensorUpdatesHandler::class.java)
@@ -51,7 +53,7 @@ class WeatherRecording : LocationRecording() {
 
         } else {
 
-
+            apiRateLimiter.updateLastRequestTime()
             val queue = Volley.newRequestQueue(this)
 
             val url = buildUrl(location)

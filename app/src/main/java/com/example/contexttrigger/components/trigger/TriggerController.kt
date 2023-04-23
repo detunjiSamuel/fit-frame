@@ -4,7 +4,7 @@ import android.content.Context
 import android.util.Log
 import com.example.contexttrigger.triggers.TriggerList
 
-object TriggerStore {
+object TriggerController {
 
     fun getAllTriggers() : Array<Trigger>{
         return TriggerList
@@ -23,9 +23,9 @@ object TriggerStore {
 
     suspend fun handleDataDispatch(context: Context, destination : String, data: String){
 
-        Log.d("dev-log:TriggerStore:requireHandleDataDispatch", "data received")
-        Log.d("dev-log:TriggerStore:requireHandleDataDispatch", destination)
-        Log.d("dev-log:TriggerStore:requireHandleDataDispatch", data)
+        Log.d("dev-log:TriggerController:requireHandleDataDispatch", "data received")
+        Log.d("dev-log:TriggerController:requireHandleDataDispatch", destination)
+        Log.d("dev-log:TriggerController:requireHandleDataDispatch", data)
 
 
         /*

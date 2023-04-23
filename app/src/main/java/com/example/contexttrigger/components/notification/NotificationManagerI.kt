@@ -3,7 +3,7 @@ package com.example.contexttrigger.components.notification
 import android.content.Context
 
 
-import com.example.contexttrigger.components.trigger.TriggerStore
+import com.example.contexttrigger.components.trigger.TriggerController
 
 private const val NOTIFICATION_CHANNEL_ID_Event = "REGULAR-EVENT"
 
@@ -13,7 +13,7 @@ class NotificationManagerI : Notification() {
     // RUN NOTIFICATIONS ON BASED ON TRIGGERS
     suspend fun runRequiredNotifications(context : Context) {
 
-        for (trigger in TriggerStore.getActiveTriggers())
+        for (trigger in TriggerController.getActiveTriggers())
         {
 
             if (trigger.shouldRunNotification(context))
@@ -31,4 +31,15 @@ class NotificationManagerI : Notification() {
 
 
     }
+
+    fun makeDeviceContextDecisions(){
+
+        // global decision - user preference
+
+        // there should be at least 30 minutes internal two triggers
+
+
+
+    }
+
 }

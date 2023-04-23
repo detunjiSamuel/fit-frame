@@ -11,7 +11,7 @@ import androidx.annotation.RequiresApi
 import com.example.contexttrigger.R
 import com.example.contexttrigger.components.notification.NotificationManagerI
 import com.example.contexttrigger.components.trigger.TriggerManager
-import com.example.contexttrigger.components.trigger.TriggerStore
+import com.example.contexttrigger.components.trigger.TriggerController
 import com.example.contexttrigger.dataProducers.dataProducerList
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -108,7 +108,7 @@ class SensorUpdatesHandler : Service() {
 
                     GlobalScope.launch {
 
-                        TriggerStore.handleDataDispatch(
+                        TriggerController.handleDataDispatch(
                             this@SensorUpdatesHandler,
                             destination,
                             data

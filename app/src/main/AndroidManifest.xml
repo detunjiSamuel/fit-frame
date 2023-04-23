@@ -2,13 +2,16 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACTIVITY_RECOGNITION" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="android.permission.READ_CALENDAR" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-:ww
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -18,22 +21,50 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Contexttrigger"
         tools:targetApi="31">
+        <service
+            android:name=".dataProducers.InternetConnectivityRecording"
+            android:enabled="true"
+            android:exported="true" />
+
+        <service
+            android:name=".dataProducers.AirplaneModeRecording"
+            android:enabled="true"
+            android:exported="true" />
+
+        <receiver
+            android:name=".broadcastReceivers.AirplaneModeReceiver"
+            android:enabled="true"
+            android:exported="true">
+
+            <intent-filter>
+                <action android:name="android.intent.action.AIRPLANE_MODE" />
+            </intent-filter>
+
+
+        </receiver>
+        <receiver
+            android:name=".broadcastReceivers.InternetConnectivityReceiver"
+            android:enabled="true"
+            android:exported="true" >
+
+            <intent-filter>
+                <action android:name="INTERNET" />
+                <action android:name="NO_INTERNET" />
+            </intent-filter>
+
+        </receiver>
+
         <activity
             android:name=".ConfigActivity"
             android:exported="true"
             android:label="@string/title_activity_config"
-            android:theme="@style/Theme.Contexttrigger"
->
-
+            android:theme="@style/Theme.Contexttrigger">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
-
-
 
         <service
             android:name=".dataProducers.LocationRecording"
@@ -51,8 +82,6 @@
             android:name=".dataProducers.StepsActivityRecording"
             android:enabled="true"
             android:exported="true" />
-
-
         <service
             android:name=".components.trigger.TriggerManager"
             android:exported="false" />

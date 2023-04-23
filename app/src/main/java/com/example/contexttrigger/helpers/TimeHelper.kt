@@ -14,7 +14,7 @@ class TimeHelper {
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
-    fun CurrentDate(): String {
+    fun currentDate(): String {
         return LocalDate.now().toString()
     }
 }

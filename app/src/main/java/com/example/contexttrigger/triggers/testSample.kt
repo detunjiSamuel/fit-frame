@@ -41,7 +41,7 @@ class testSample : Trigger {
         return "something"
     }
 
-    override fun getNotificationMessage(): String {
+    override fun getNotificationMessage(context: Context): String {
 
         return "something message"
     }

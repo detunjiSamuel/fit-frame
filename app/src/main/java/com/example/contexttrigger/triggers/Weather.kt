@@ -4,7 +4,6 @@ import android.content.Context
 import android.os.Build
 import androidx.annotation.RequiresApi
 import com.example.contexttrigger.components.trigger.Trigger
-import com.example.contexttrigger.dataProducers.LOCATION_RECORDING_PUBLIC_NAME
 import com.example.contexttrigger.dataProducers.WEATHER_RECORDING_PUBLIC_NAME
 import com.example.contexttrigger.db.steps.GetSteps
 import com.example.contexttrigger.helpers.TimeHelper
@@ -51,7 +50,7 @@ class Weather : Trigger {
             if (isCloseToNow)
             {
 
-                val todaySteps = GetSteps()(context , timeHelp.CurrentDate()) ?: return true
+                val todaySteps = GetSteps()(context , timeHelp.currentDate()) ?: return true
 
                 val isTooFar = timeHelp.
                 calculateHoursDifference(todaySteps.updatedAt.toString()) > 3 // more than 3hrs
