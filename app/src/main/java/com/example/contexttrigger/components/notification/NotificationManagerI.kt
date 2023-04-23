@@ -6,7 +6,6 @@ import com.example.contexttrigger.components.trigger.NOT_IMPLEMENTED_TRIGGER_NOT
 
 import com.example.contexttrigger.components.trigger.TriggerController
 import com.example.contexttrigger.helpers.TimeHelper
-import java.util.*
 
 private const val NOTIFICATION_CHANNEL_ID_Event = "REGULAR-EVENT"
 
@@ -25,7 +24,6 @@ class NotificationManagerI : Notification() {
 
         for (trigger in TriggerController.getActiveTriggers())
         {
-
 
             if (trigger.shouldRunNotification(context))
             {
@@ -52,11 +50,6 @@ class NotificationManagerI : Notification() {
 
     }
 
-    fun makeDeviceContextDecisions(){
-
-
-
-    }
 
 
     private fun passedBasicNotificationRules(): Boolean {
@@ -67,11 +60,10 @@ class NotificationManagerI : Notification() {
 
     private fun didUserAllowNotification(): Boolean {
 
-         val sharedPref = _context.getSharedPreferences("myPrefs", Context.MODE_PRIVATE)
+        val sharedPref = _context.getSharedPreferences("myPrefs", Context.MODE_PRIVATE)
 
-        val stored = sharedPref.getString("userAllowedNotification", true.toString())
 
-        return stored == "true"
+        return sharedPref.getBoolean("userAllowedNotification", true)
 
     }
 

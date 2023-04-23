@@ -1,6 +1,7 @@
 package com.example.contexttrigger
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import androidx.activity.compose.setContent
@@ -36,7 +37,10 @@ import androidx.compose.ui.unit.sp
 import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.compose.ui.platform.LocalContext
+import com.example.contexttrigger.components.sensorManager.SensorController
 import com.example.contexttrigger.components.trigger.TriggerManager
+import com.example.contexttrigger.dataProducers.STEPS_RECORDING_PUBLIC_NAME
 
 
 class ConfigActivity : AppCompatActivity() {
@@ -72,10 +76,54 @@ fun createSetupScreen() {
     val focusRequester = remember { FocusRequester() }
     val focusManager = LocalFocusManager.current
 
+    val context = LocalContext.current
+
+    val configHelper = ConfigHelper()
+
+
+
+    val showNotification = remember { mutableStateOf(configHelper.getPreference(context, USER_ALLOWED_NOTIFICATION_KEY)) }
+    val automaticStepRecoding = remember { mutableStateOf(configHelper.getPreference(context, AUTOMATIC_STEPS_RECORDING_KEY)) }
+
+
+    fun toggleShowNotification () {
+        configHelper.togglePreference(context, USER_ALLOWED_NOTIFICATION_KEY)
+        showNotification.value = configHelper.getPreference(context, USER_ALLOWED_NOTIFICATION_KEY)
+
+    }
+
+    fun toggleStepRecording () {
+        configHelper.togglePreference(context, AUTOMATIC_STEPS_RECORDING_KEY)
+        automaticStepRecoding.value = configHelper.getPreference(context, AUTOMATIC_STEPS_RECORDING_KEY)
+
+        // tell sensor controller
+
+        if (automaticStepRecoding.value){
+
+            val intent = Intent(context , SensorController::class.java)
+
+            intent.putExtra("IS_REPORTING" , "PERMISSION_GRANTED" )
+
+            intent.putExtra("DATA" , STEPS_RECORDING_PUBLIC_NAME )
+
+            context.startService(intent)
+        } else{
+
+            val intent = Intent(context , SensorController::class.java)
+
+            intent.putExtra("IS_REPORTING" , "PERMISSION_NOT_GRANTED"  )
+
+            intent.putExtra("DATA" , STEPS_RECORDING_PUBLIC_NAME )
+
+            context.startService(intent)
+
+        }
+    }
+
 
 
     Scaffold(
-        topBar = { TopAppBar(title = { Text(text = "Configurations") }) },
+
     ) {
         Column(
             modifier = Modifier.fillMaxSize(),
@@ -154,8 +202,9 @@ fun createSetupScreen() {
                     ) {
                         Text(text = "Show Notification", style = MaterialTheme.typography.body2)
                         Switch(
-                            checked = true,
-                            onCheckedChange = { /* Handle show notification switch */ }
+                            checked = showNotification.value ,
+                            onCheckedChange = {
+                                toggleShowNotification() }
                         )
                     }
                     Spacer(modifier = Modifier.height(8.dp))
@@ -165,8 +214,8 @@ fun createSetupScreen() {
                     ) {
                         Text(text = "Automatically Record Steps", style = MaterialTheme.typography.body2)
                         Switch(
-                            checked = true,
-                            onCheckedChange = { /* Handle auto-record steps switch */ }
+                            checked = automaticStepRecoding.value,
+                            onCheckedChange = { toggleStepRecording() }
                         )
                     }
                 }

@@ -9,7 +9,7 @@ import android.util.Log
 import com.example.contexttrigger.dataProducers.LOCATION_RECORDING_PUBLIC_NAME
 import com.example.contexttrigger.dataProducers.STEPS_RECORDING_PUBLIC_NAME
 import com.example.contexttrigger.dataProducers.WEATHER_RECORDING_PUBLIC_NAME
-
+import com.example.contexttrigger.dataProducers.dataProducerList
 
 
 private var DEFAULT = "DOES NOT EXIST"
@@ -25,6 +25,8 @@ class SensorController : Service() {
         Log.d("dev-log:SensorsController", "Creating  sensor controller...")
         super.onCreate()
     }
+
+
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
 
@@ -103,7 +105,9 @@ class SensorController : Service() {
     }
 
 
+
     private fun reportPermissions(permission : String, isGranted  : Boolean ){
+
 
         var affectedProducers = getDataProducersAffectedByPermission(permission)
 
@@ -114,6 +118,17 @@ class SensorController : Service() {
             else
                 disableDataProducer(producer , permission)
 
+        }
+
+        // DIRECT FROM USER
+        val foundProducer = dataProducerList.find { it.publicName == permission }
+
+        if (foundProducer != null)
+        {
+            if (isGranted)
+                enableDataProducer(permission , "user")
+            else
+                disableDataProducer( permission , "user")
         }
 
     }
