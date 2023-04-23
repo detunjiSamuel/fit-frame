@@ -1,4 +1,4 @@
-package com.example.contexttrigger.components.sensorManager
+package com.example.contexttrigger.sensorManager
 
 import android.app.*
 import android.content.Context
@@ -9,10 +9,8 @@ import android.os.IBinder
 import android.util.Log
 import androidx.annotation.RequiresApi
 import com.example.contexttrigger.R
-import com.example.contexttrigger.components.notification.NotificationManagerI
-import com.example.contexttrigger.components.trigger.TriggerManager
-import com.example.contexttrigger.components.trigger.TriggerController
-import com.example.contexttrigger.dataProducers.dataProducerList
+import com.example.contexttrigger.notificationManager.NotificationManagerI
+import com.example.contexttrigger.triggerManager.TriggerController
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import java.util.*

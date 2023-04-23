@@ -1,4 +1,4 @@
-package com.example.contexttrigger.components.trigger
+package com.example.contexttrigger.triggerManager
 
 import android.Manifest
 import android.app.NotificationChannel
@@ -11,8 +11,8 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import com.example.contexttrigger.components.sensorManager.SensorController
-import com.example.contexttrigger.components.sensorManager.SensorUpdatesHandler
+import com.example.contexttrigger.sensorManager.SensorController
+import com.example.contexttrigger.sensorManager.SensorUpdatesHandler
 import com.tbruyelle.rxpermissions3.RxPermissions
 
 

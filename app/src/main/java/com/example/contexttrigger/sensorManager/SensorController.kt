@@ -1,4 +1,4 @@
-package com.example.contexttrigger.components.sensorManager
+package com.example.contexttrigger.sensorManager
 
 import android.app.Service
 import android.content.Context
@@ -6,6 +6,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.IBinder
 import android.util.Log
+import com.example.contexttrigger.SHARED_PREFERENCES_NAME
 import com.example.contexttrigger.dataProducers.LOCATION_RECORDING_PUBLIC_NAME
 import com.example.contexttrigger.dataProducers.STEPS_RECORDING_PUBLIC_NAME
 import com.example.contexttrigger.dataProducers.WEATHER_RECORDING_PUBLIC_NAME
@@ -146,7 +147,7 @@ class SensorController : Service() {
     private fun enableDataProducer(producer : String, reason: String)
     {
 
-        val sharedPref = context.getSharedPreferences("myPrefs", Context.MODE_PRIVATE)
+        val sharedPref = context.getSharedPreferences(SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE)
 
         val stored = sharedPref.getString(sensorHelper.getDisabledProducerKey(producer), DEFAULT)
 
@@ -170,7 +171,7 @@ class SensorController : Service() {
 
     private fun disableDataProducer(producer : String, reason: String){
 
-        val sharedPref = context.getSharedPreferences("myPrefs", Context.MODE_PRIVATE)
+        val sharedPref = context.getSharedPreferences(SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE)
 
         val editor = sharedPref.edit()
 

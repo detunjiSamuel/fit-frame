@@ -19,7 +19,7 @@
         android:theme="@style/Theme.Contexttrigger"
         tools:targetApi="31" >
         <service
-            android:name=".components.sensorManager.SensorController"
+            android:name=".sensorManager.SensorController"
             android:enabled="true"
             android:exported="true" >
         </service>
@@ -70,7 +70,7 @@
             android:enabled="true"
             android:exported="true" />
         <service
-            android:name=".components.sensorManager.SensorUpdatesHandler"
+            android:name=".sensorManager.SensorUpdatesHandler"
             android:enabled="true"
             android:exported="true" />
         <service
@@ -78,7 +78,7 @@
             android:enabled="true"
             android:exported="true" />
         <service
-            android:name=".components.trigger.TriggerManager"
+            android:name=".triggerManager.TriggerManager"
             android:exported="false" />
     </application>
 

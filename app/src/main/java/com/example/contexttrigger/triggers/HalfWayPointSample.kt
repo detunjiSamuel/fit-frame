@@ -2,7 +2,8 @@ package com.example.contexttrigger.triggers
 
 import android.content.Context
 import android.util.Log
-import com.example.contexttrigger.components.trigger.Trigger
+import com.example.contexttrigger.SHARED_PREFERENCES_NAME
+import com.example.contexttrigger.triggerManager.Trigger
 import com.example.contexttrigger.dataProducers.STEPS_RECORDING_PUBLIC_NAME
 
 
@@ -66,7 +67,7 @@ class HalfWayPointSample () : Trigger {
     }
 
     private fun updateSteps(newSteps :Int) {
-        val sharedPref = _context.getSharedPreferences("myPrefs", Context.MODE_PRIVATE)
+        val sharedPref = _context.getSharedPreferences(SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE)
 
         with(sharedPref.edit()) {
             putInt("goalCompleted", newSteps)
@@ -77,7 +78,7 @@ class HalfWayPointSample () : Trigger {
 
     private fun getStepsCompleted(): Int {
 
-        val sharedPref = _context.getSharedPreferences("myPrefs", Context.MODE_PRIVATE)
+        val sharedPref = _context.getSharedPreferences(SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE)
 
         val goal = sharedPref.getInt("goalCompleted", -1)
 

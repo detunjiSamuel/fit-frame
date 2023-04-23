@@ -3,7 +3,8 @@ package com.example.contexttrigger.triggers
 import android.content.Context
 import android.os.Build
 import androidx.annotation.RequiresApi
-import com.example.contexttrigger.components.trigger.Trigger
+import com.example.contexttrigger.SHARED_PREFERENCES_NAME
+import com.example.contexttrigger.triggerManager.Trigger
 import com.example.contexttrigger.dataProducers.WEATHER_RECORDING_PUBLIC_NAME
 import com.example.contexttrigger.db.steps.GetSteps
 import com.example.contexttrigger.helpers.TimeHelper
@@ -30,7 +31,7 @@ class Weather : Trigger {
     @RequiresApi(Build.VERSION_CODES.O)
     override suspend fun shouldRunNotification(context: Context): Boolean {
 
-        val sharedPref = context.getSharedPreferences("myPrefs", Context.MODE_PRIVATE)
+        val sharedPref = context.getSharedPreferences(SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE)
 
         val stored = sharedPref.getString("weather-trigger-info", DEFAULT)
 
@@ -68,7 +69,7 @@ class Weather : Trigger {
 
         // store in shared Preference
 
-        val sharedPref = context.getSharedPreferences("myPrefs", Context.MODE_PRIVATE)
+        val sharedPref = context.getSharedPreferences(SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE)
 
         var toStore = data + ',' + System.currentTimeMillis()
 
@@ -85,7 +86,7 @@ class Weather : Trigger {
 
     override fun getNotificationMessage(context: Context): String {
 
-        val sharedPref = context.getSharedPreferences("myPrefs", Context.MODE_PRIVATE)
+        val sharedPref = context.getSharedPreferences(SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE)
 
         val stored = sharedPref.getString("weather-trigger-info", DEFAULT)
 

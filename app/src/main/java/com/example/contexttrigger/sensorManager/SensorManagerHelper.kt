@@ -1,7 +1,8 @@
-package com.example.contexttrigger.components.sensorManager
+package com.example.contexttrigger.sensorManager
 
 import android.content.Context
 import android.preference.PreferenceManager
+import com.example.contexttrigger.SHARED_PREFERENCES_NAME
 import com.example.contexttrigger.dataProducers.DataProducer
 import com.example.contexttrigger.dataProducers.dataProducerList
 
@@ -16,7 +17,7 @@ class SensorManagerHelper {
     fun getActiveDataProducers(context: Context): List<DataProducer> {
 
 
-        val sharedPref = context.getSharedPreferences("myPrefs", Context.MODE_PRIVATE)
+        val sharedPref = context.getSharedPreferences(SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE)
 
         // Filter out disabled data producers
         val activeDataProducers = dataProducerList.filter { dataProducer ->

@@ -1,4 +1,4 @@
-package com.example.contexttrigger.components.notification
+package com.example.contexttrigger.notificationManager
 
 
 import android.app.NotificationManager

@@ -38,8 +38,8 @@ import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.ui.platform.LocalContext
-import com.example.contexttrigger.components.sensorManager.SensorController
-import com.example.contexttrigger.components.trigger.TriggerManager
+import com.example.contexttrigger.sensorManager.SensorController
+import com.example.contexttrigger.triggerManager.TriggerManager
 import com.example.contexttrigger.dataProducers.STEPS_RECORDING_PUBLIC_NAME
 
 

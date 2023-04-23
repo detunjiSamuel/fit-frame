@@ -2,7 +2,7 @@ package com.example.contexttrigger.triggers
 
 import android.content.Context
 import android.util.Log
-import com.example.contexttrigger.components.trigger.Trigger
+import com.example.contexttrigger.triggerManager.Trigger
 import com.example.contexttrigger.dataProducers.LOCATION_RECORDING_PUBLIC_NAME
 
 

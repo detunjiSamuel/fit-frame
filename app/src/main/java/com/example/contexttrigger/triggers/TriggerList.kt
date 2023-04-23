@@ -1,6 +1,6 @@
 package com.example.contexttrigger.triggers
 
-import com.example.contexttrigger.components.trigger.Trigger
+import com.example.contexttrigger.triggerManager.Trigger
 
 
 /***

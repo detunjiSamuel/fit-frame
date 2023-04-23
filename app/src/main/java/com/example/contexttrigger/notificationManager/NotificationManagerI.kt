@@ -1,10 +1,12 @@
-package com.example.contexttrigger.components.notification
+package com.example.contexttrigger.notificationManager
 
 import android.content.Context
-import com.example.contexttrigger.components.trigger.NOT_IMPLEMENTED_TRIGGER_NOTIFICATION_MESSAGE
+import com.example.contexttrigger.SHARED_PREFERENCES_NAME
+import com.example.contexttrigger.USER_ALLOWED_NOTIFICATION_KEY
+import com.example.contexttrigger.triggerManager.NOT_IMPLEMENTED_TRIGGER_NOTIFICATION_MESSAGE
 
 
-import com.example.contexttrigger.components.trigger.TriggerController
+import com.example.contexttrigger.triggerManager.TriggerController
 import com.example.contexttrigger.helpers.TimeHelper
 
 private const val NOTIFICATION_CHANNEL_ID_Event = "REGULAR-EVENT"
@@ -60,10 +62,10 @@ class NotificationManagerI : Notification() {
 
     private fun didUserAllowNotification(): Boolean {
 
-        val sharedPref = _context.getSharedPreferences("myPrefs", Context.MODE_PRIVATE)
+        val sharedPref = _context.getSharedPreferences(SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE)
 
 
-        return sharedPref.getBoolean("userAllowedNotification", true)
+        return sharedPref.getBoolean(USER_ALLOWED_NOTIFICATION_KEY, true)
 
     }
 
@@ -72,7 +74,7 @@ class NotificationManagerI : Notification() {
     }
 
     private fun lastNotificationFarEnough():Boolean {
-        val sharedPref = _context.getSharedPreferences("myPrefs", Context.MODE_PRIVATE)
+        val sharedPref = _context.getSharedPreferences(SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE)
 
         val lastTriggerNotificationTimestamp = sharedPref.getString("lastTriggerNotification", "NOT_EXIST")
 

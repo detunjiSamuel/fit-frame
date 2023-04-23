@@ -4,7 +4,7 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.util.Log
-import com.example.contexttrigger.components.sensorManager.SensorController
+import com.example.contexttrigger.sensorManager.SensorController
 
 class InternetConnectivityReceiver : BroadcastReceiver() {
 
