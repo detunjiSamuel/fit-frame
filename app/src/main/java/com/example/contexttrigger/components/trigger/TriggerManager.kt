@@ -119,6 +119,10 @@ class TriggerManager {
                 }
                 else  {
 
+                    Log.d("dev-log:TriggerManager:requirePermissions", "permission.not_granted")
+                    Log.d("dev-log:TriggerManager:requirePermissions", permission.name)
+
+
                     val intent = Intent(_context , SensorController::class.java)
 
                     intent.putExtra("IS_REPORTING" , "PERMISSION_NOT_GRANTED" )

@@ -23,8 +23,8 @@ private const  val WAIT_PERIOD = 21600000 // 6hrs
 
 class SensorUpdatesHandler : Service() {
 
+    private var sensorHelper = SensorManagerHelper()
 
-    private lateinit var triggerManager: TriggerManager
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate() {
@@ -45,10 +45,9 @@ class SensorUpdatesHandler : Service() {
 
     private fun startValidListeners(){
 
-        // Trigger should have active Listeners
 
-        for (contextListener in dataProducerList){
-            //TODO enforce check to see if it is needed
+
+        for (contextListener in sensorHelper.getActiveDataProducers(this )){
 
             Log.d("dev-log:SensorsUpdates:StartValidListeners", contextListener.publicName )
 

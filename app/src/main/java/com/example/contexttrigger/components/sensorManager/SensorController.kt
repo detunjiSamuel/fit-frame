@@ -11,11 +11,14 @@ import com.example.contexttrigger.dataProducers.STEPS_RECORDING_PUBLIC_NAME
 import com.example.contexttrigger.dataProducers.WEATHER_RECORDING_PUBLIC_NAME
 
 
+
 private var DEFAULT = "DOES NOT EXIST"
 
 class SensorController : Service() {
 
     private lateinit var context : Context
+
+    private var sensorHelper = SensorManagerHelper()
 
 
     override fun onCreate() {
@@ -130,7 +133,7 @@ class SensorController : Service() {
 
         val sharedPref = context.getSharedPreferences("myPrefs", Context.MODE_PRIVATE)
 
-        val stored = sharedPref.getString(getProducerKey(producer), DEFAULT)
+        val stored = sharedPref.getString(sensorHelper.getDisabledProducerKey(producer), DEFAULT)
 
 
         val values = stored?.split("|")?.toMutableList()
@@ -139,11 +142,11 @@ class SensorController : Service() {
 
         if (values != null) {
             if (values.isEmpty()) {
-                sharedPref.edit().remove(getProducerKey(producer)).apply()
+                sharedPref.edit().remove(sensorHelper.getDisabledProducerKey(producer)).apply()
             } else {
 
                 val updatedValue = values.joinToString("|")
-                sharedPref.edit().putString(getProducerKey(producer), updatedValue).apply()
+                sharedPref.edit().putString(sensorHelper.getDisabledProducerKey(producer), updatedValue).apply()
             }
         }
 
@@ -156,20 +159,18 @@ class SensorController : Service() {
 
         val editor = sharedPref.edit()
 
-        val stored = sharedPref.getString(getProducerKey(producer), DEFAULT)
+        val stored = sharedPref.getString(sensorHelper.getDisabledProducerKey(producer), DEFAULT)
 
         if (stored == DEFAULT)
         {
-            editor.putString(getProducerKey(producer), reason).apply()
+            editor.putString(sensorHelper.getDisabledProducerKey(producer), reason).apply()
         }else{
-            editor.putString(getProducerKey(producer), "$stored|$reason").apply()
+            editor.putString(sensorHelper.getDisabledProducerKey(producer), "$stored|$reason").apply()
         }
     }
 
 
-    private fun getProducerKey(producer : String) : String{
-        return "disabled:$producer"
-    }
+
 
 
 }
