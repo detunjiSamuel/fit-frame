@@ -1,1 +1,5 @@
-Added activity so it would allow me to test , it would be removed
+# fit-frame
+Contextual Trigger Framework
+
+
+![alt text](https://github.com/detunjiSamuel/fit-frame/blob/main/CT-ARCHITECTURE-1.drawio.png?raw=true)

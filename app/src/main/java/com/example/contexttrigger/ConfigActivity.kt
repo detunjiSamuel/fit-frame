@@ -1,6 +1,7 @@
 package com.example.contexttrigger
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
@@ -38,6 +39,7 @@ import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.font.FontWeight
 import com.example.contexttrigger.sensorManager.SensorController
 import com.example.contexttrigger.triggerManager.TriggerManager
 import com.example.contexttrigger.dataProducers.STEPS_RECORDING_PUBLIC_NAME
@@ -85,6 +87,11 @@ fun createSetupScreen() {
     val showNotification = remember { mutableStateOf(configHelper.getPreference(context, USER_ALLOWED_NOTIFICATION_KEY)) }
     val automaticStepRecoding = remember { mutableStateOf(configHelper.getPreference(context, AUTOMATIC_STEPS_RECORDING_KEY)) }
 
+    val stepsGoal = remember {
+        mutableStateOf(
+            configHelper.getStepsGoal(context)
+        )
+    }
 
     fun toggleShowNotification () {
         configHelper.togglePreference(context, USER_ALLOWED_NOTIFICATION_KEY)
@@ -168,7 +175,8 @@ fun createSetupScreen() {
                         onClick = {
                             val steps = inputState.value.toIntOrNull()
                             if (steps != null) {
-                                setStepsGoal(steps)
+                                configHelper.setStepsGoal(context , steps)
+                                stepsGoal.value = steps
                             } else {
 //                            Toast().setText("Please enter a valid number")
                                 Log.d("invalid" ,  "enter-a-valid-number")
@@ -222,16 +230,13 @@ fun createSetupScreen() {
             }
 
             Spacer(modifier = Modifier.height(24.dp))
+
+            StepsGoal(goal = stepsGoal.value, completed = 0)
         }
     }
 }
 
-private fun setStepsGoal(steps: Int) {
-//    val intent = Intent(context, ContextUpdateManager::class.java)
-//    intent.putExtra("Data", "Goal")
-//    intent.putExtra("Steps", steps)
-//    context.startService(intent)
-}
+
 
 @Composable
 fun StepsInputField(
@@ -270,4 +275,34 @@ fun StepsInputField(
         ),
         keyboardActions = onAction
     )
+}
+
+
+@Composable
+fun StepsGoal(goal: Int, completed: Int) {
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Text(
+            text = "GOAL",
+            style = MaterialTheme.typography.h5,
+            fontWeight = FontWeight.Bold
+        )
+        Text(
+            text = goal.toString(),
+            style = MaterialTheme.typography.h4,
+            fontWeight = FontWeight.Bold
+        )
+        Spacer(modifier = Modifier.height(16.dp))
+        Text(
+            text = "COMPLETED",
+            style = MaterialTheme.typography.h5,
+            fontWeight = FontWeight.Bold
+        )
+        Text(
+            text = completed.toString(),
+            style = MaterialTheme.typography.h4,
+            fontWeight = FontWeight.Bold
+        )
+    }
 }

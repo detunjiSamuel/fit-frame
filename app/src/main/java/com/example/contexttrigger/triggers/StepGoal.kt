@@ -16,6 +16,7 @@ private var HALF_WAY_TITLE = "HalfwayPoint"
 private var COMPLETED_GOAL_TITLE = "Goal Completed"
 
  var defaultGoal = 100
+var STEPS_GOAL_KEY = "STEPS-GOAL"
 
 class StepGoal () : Trigger {
 
@@ -105,7 +106,7 @@ class StepGoal () : Trigger {
         val sharedPref =
             _context.getSharedPreferences(SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE)
 
-        return sharedPref.getInt("goalCompleted", defaultGoal)
+        return sharedPref.getInt(STEPS_GOAL_KEY, defaultGoal)
 
     }
 

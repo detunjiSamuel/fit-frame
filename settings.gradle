@@ -17,4 +17,3 @@ dependencyResolutionManagement {
 }
 rootProject.name = "context.trigger"
 include ':app'
-include ':myapplication'
