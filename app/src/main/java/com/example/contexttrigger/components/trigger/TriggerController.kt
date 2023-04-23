@@ -6,14 +6,7 @@ import com.example.contexttrigger.triggers.TriggerList
 
 object TriggerController {
 
-    fun getAllTriggers() : Array<Trigger>{
-        return TriggerList
-    }
 
-//    fun getActiveListeners(): Array<Trigger> {
-//        // useless but not sure again
-//        return triggers.toTypedArray()
-//    }
 
     fun getActiveTriggers() : Array<Trigger> {
         // TODO add logic to filter if active/inactive

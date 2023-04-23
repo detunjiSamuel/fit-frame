@@ -25,4 +25,11 @@ class TimeHelper {
         val hour = calendar.get(Calendar.HOUR_OF_DAY)
         return (hour < 6 || hour >= 18) // Night time range: from 6pm to 6am
     }
+
+    fun calculateMinutesDifference(timestamp: String): Long {
+        val times = timestamp.toLong()
+        val currentTimestamp = System.currentTimeMillis()
+        val timeDifference = currentTimestamp - times
+        return timeDifference / (1000 * 60)
+    }
 }

@@ -47,8 +47,11 @@ class NotificationManagerI : Notification() {
 
     }
 
+
     private fun passedBasicNotificationRules(): Boolean {
-        return didUserAllowNotification() && isNotNightTime()
+        return didUserAllowNotification() &&
+                isNotNightTime() &&
+                lastNotificationFarEnough()
     }
 
     private fun didUserAllowNotification(): Boolean {
@@ -63,6 +66,21 @@ class NotificationManagerI : Notification() {
 
     private fun isNotNightTime(): Boolean {
         return !TimeHelper().isNightTime()
+    }
+
+    private fun lastNotificationFarEnough():Boolean {
+        val sharedPref = _context.getSharedPreferences("myPrefs", Context.MODE_PRIVATE)
+
+        val lastTriggerNotificationTimestamp = sharedPref.getString("lastTriggerNotification", "NOT_EXIST")
+
+        if (lastTriggerNotificationTimestamp == "NOT_EXIST")
+            return true
+
+        val minutesDifference = TimeHelper()
+            .calculateMinutesDifference(lastTriggerNotificationTimestamp.toString())
+
+        return minutesDifference > 15
+
     }
 
 }
