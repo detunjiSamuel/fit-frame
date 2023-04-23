@@ -7,43 +7,28 @@ import android.util.Log
 import com.example.contexttrigger.sensorManager.SensorController
 import com.example.contexttrigger.dataProducers.LOCATION_RECORDING_PUBLIC_NAME
 
+
+
 class AirplaneModeReceiver : BroadcastReceiver() {
 
     override fun onReceive(context: Context, intent: Intent) {
-        if (intent.action == Intent.ACTION_AIRPLANE_MODE_CHANGED) {
-            val isAirplaneModeOn = intent.getBooleanExtra("state", false)
+        when (intent.action) {
+            Intent.ACTION_AIRPLANE_MODE_CHANGED -> {
+                val isAirplaneModeOn = intent.getBooleanExtra("state", false)
 
-            Log.d("dev-log:dev-log:AirplaneModeReceiver", "onReceive")
+                Log.d("dev-log::AirplaneModeReceiver", "onReceive")
 
-
-
-            val resourceName = "airplane-mode"
-
-            if (isAirplaneModeOn) {
-                // Airplane mode is on
-
-
-                val intent = Intent(context , SensorController::class.java)
-
-                intent.putExtra("IS_REPORTING" , "DEVICE_RESOURCE_CHANGE" )
-
-                intent.putExtra("DATA" , "$resourceName|NO")
-
-                context.startService(intent)
-
-
-            } else {
-                // Airplane mode is off
-                val intent = Intent(context , SensorController::class.java)
-
-                intent.putExtra("IS_REPORTING" , "DEVICE_RESOURCE_CHANGE" )
-
-                intent.putExtra("DATA" , "$resourceName|YES")
-
-                context.startService(intent)
+                val resourceName = "airplane-mode"
+                val data = "$resourceName|${if (isAirplaneModeOn) "NO" else "YES"}"
+                val serviceIntent = Intent(context, SensorController::class.java).apply {
+                    putExtra("IS_REPORTING", "DEVICE_RESOURCE_CHANGE")
+                    putExtra("DATA", data)
+                }
+                context.startService(serviceIntent)
             }
         }
-    }
+
+
 
 
 }
