@@ -20,6 +20,7 @@ open class Notification {
                 .setContentText(message)
                 .setSmallIcon(R.drawable.ic_launcher_foreground)
 
+
         val notify: NotificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
         Log.d("dev-log:notificationHandler", "Notification Sent")

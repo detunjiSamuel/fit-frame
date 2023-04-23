@@ -1,6 +1,11 @@
 package com.example.contexttrigger.components.trigger
 
 import android.content.Context
+import androidx.core.app.NotificationCompat
+import com.example.contexttrigger.R
+
+
+ var NOT_IMPLEMENT_TRIGGER_NOTIFICATION_MESSAGE = "YOU_DID_NOT_DEFINE"
 
 
 interface Trigger {
@@ -32,8 +37,16 @@ interface Trigger {
     suspend fun handle( context:Context , createdBy : String, data : String) // Event_Handler
     // it is up to the developer to decide how to handle this
 
-    fun getNotificationTitle() : String
+    fun getNotificationTitle() : String = NOT_IMPLEMENT_TRIGGER_NOTIFICATION_MESSAGE
 
     fun getNotificationMessage(context: Context) : String
+
+
+    // Support custom notification
+    fun getCreatedNotification(context : Context): NotificationCompat.Builder = NotificationCompat.Builder(context,
+        NOT_IMPLEMENT_TRIGGER_NOTIFICATION_MESSAGE )
+        .setContentTitle(NOT_IMPLEMENT_TRIGGER_NOTIFICATION_MESSAGE)
+        .setContentText(NOT_IMPLEMENT_TRIGGER_NOTIFICATION_MESSAGE)
+        .setSmallIcon(R.drawable.ic_launcher_foreground)
 
 }

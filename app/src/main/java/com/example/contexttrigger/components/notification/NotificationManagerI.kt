@@ -4,14 +4,23 @@ import android.content.Context
 
 
 import com.example.contexttrigger.components.trigger.TriggerController
+import com.example.contexttrigger.helpers.TimeHelper
+import java.util.*
 
 private const val NOTIFICATION_CHANNEL_ID_Event = "REGULAR-EVENT"
 
 
 class NotificationManagerI : Notification() {
 
+    private lateinit var _context :Context
+
     // RUN NOTIFICATIONS ON BASED ON TRIGGERS
     suspend fun runRequiredNotifications(context : Context) {
+
+        _context = context
+
+        if (!passedBasicNotificationRules())
+            return
 
         for (trigger in TriggerController.getActiveTriggers())
         {
@@ -34,12 +43,26 @@ class NotificationManagerI : Notification() {
 
     fun makeDeviceContextDecisions(){
 
-        // global decision - user preference
-
-        // there should be at least 30 minutes internal two triggers
 
 
+    }
 
+    private fun passedBasicNotificationRules(): Boolean {
+        return didUserAllowNotification() && isNotNightTime()
+    }
+
+    private fun didUserAllowNotification(): Boolean {
+
+         val sharedPref = _context.getSharedPreferences("myPrefs", Context.MODE_PRIVATE)
+
+        val stored = sharedPref.getString("userAllowedNotification", true.toString())
+
+        return stored == "true"
+
+    }
+
+    private fun isNotNightTime(): Boolean {
+        return !TimeHelper().isNightTime()
     }
 
 }

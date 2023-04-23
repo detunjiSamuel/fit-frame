@@ -25,7 +25,6 @@ class SensorUpdatesHandler : Service() {
 
     private var sensorHelper = SensorManagerHelper()
 
-
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate() {
         Log.d("dev-log:SensorsUpdatesHandler", "Creating  manager...")
@@ -44,7 +43,6 @@ class SensorUpdatesHandler : Service() {
     }
 
     private fun startValidListeners(){
-
 
 
         for (contextListener in sensorHelper.getActiveDataProducers(this )){
