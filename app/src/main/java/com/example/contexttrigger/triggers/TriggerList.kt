@@ -13,7 +13,8 @@ val TriggerList : Array<Trigger> =
      arrayOf(
         StepGoal(),
         Reward(),
-         Weather()
+         Weather(),
+         WalkingReminder()
 
     )
 

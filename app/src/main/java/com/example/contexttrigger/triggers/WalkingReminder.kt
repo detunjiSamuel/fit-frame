@@ -6,7 +6,7 @@ import com.example.contexttrigger.triggerManager.Trigger
 import com.example.contexttrigger.dataProducers.TimeBasedReminder
 
 
-class WalkingReminder () : Trigger {
+class WalkingReminder : Trigger {
 
     private var emittersNeeded =  arrayOf("ALARM_DATA_PRODUCER")
     private var notificationTitle = "Walk More!"
