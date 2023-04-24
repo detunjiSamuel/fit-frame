@@ -90,7 +90,7 @@ class NotificationManagerI : Notification() {
             .calculateMinutesDifference(lastTimestamp.toString())
 
 
-        return minutesDifference > 45
+        return minutesDifference > 5
     }
 
     private fun registerNotificationMessage(message: String){
@@ -123,7 +123,7 @@ class NotificationManagerI : Notification() {
         val minutesDifference = TimeHelper()
             .calculateMinutesDifference(lastTriggerNotificationTimestamp.toString())
 
-        return minutesDifference > 15
+        return minutesDifference > 3
 
     }
 
