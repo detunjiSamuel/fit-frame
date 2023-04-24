@@ -9,7 +9,7 @@ class StepExists  ()  {
 
 
     suspend operator fun invoke(context: Context, date : String): Boolean {
-        val stepsDao = StepsDatabase.getInstance(context).stepsDao
+        val stepsDao = StepsDatabase.getInstance(context).stepsDao()
         val stepsRepository = StepsRepoImplementation(stepsDao)
 
         return stepsRepository.count(date) > 0

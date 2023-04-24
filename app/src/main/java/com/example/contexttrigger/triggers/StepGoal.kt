@@ -4,12 +4,12 @@ import android.content.Context
 import android.os.Build
 import android.util.Log
 import androidx.annotation.RequiresApi
-import com.example.contexttrigger.SHARED_PREFERENCES_NAME
 import com.example.contexttrigger.triggerManager.Trigger
 import com.example.contexttrigger.dataProducers.STEPS_RECORDING_PUBLIC_NAME
 import com.example.contexttrigger.db.steps.AddStep
 import com.example.contexttrigger.db.steps.GetSteps
 import com.example.contexttrigger.helpers.TimeHelper
+import com.example.contexttrigger.ui.configurations.SHARED_PREFERENCES_NAME
 
 
 private var HALF_WAY_TITLE = "HalfwayPoint"
@@ -101,7 +101,7 @@ class StepGoal () : Trigger {
 
     }
 
-    private suspend fun getStepGoal(): Int {
+    private fun getStepGoal(): Int {
 
         val sharedPref =
             _context.getSharedPreferences(SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE)

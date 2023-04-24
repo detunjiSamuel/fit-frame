@@ -6,11 +6,11 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.IBinder
 import android.util.Log
-import com.example.contexttrigger.SHARED_PREFERENCES_NAME
 import com.example.contexttrigger.dataProducers.LOCATION_RECORDING_PUBLIC_NAME
 import com.example.contexttrigger.dataProducers.STEPS_RECORDING_PUBLIC_NAME
 import com.example.contexttrigger.dataProducers.WEATHER_RECORDING_PUBLIC_NAME
 import com.example.contexttrigger.dataProducers.dataProducerList
+import com.example.contexttrigger.ui.configurations.SHARED_PREFERENCES_NAME
 
 
 private var DEFAULT = "DOES NOT EXIST"

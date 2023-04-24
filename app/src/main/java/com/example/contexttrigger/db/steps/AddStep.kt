@@ -8,7 +8,7 @@ class AddStep {
 
     suspend operator fun invoke(context: Context, date : String, steps : Int )
     {
-        val stepsDao = StepsDatabase.getInstance(context).stepsDao
+        val stepsDao = StepsDatabase.getInstance(context).stepsDao()
         val stepsRepository = StepsRepoImplementation(stepsDao)
 
         var isValid = stepsRepository.getStepByDate(date)

@@ -1,7 +1,7 @@
 package com.example.contexttrigger.helpers
 
 import android.content.Context
-import com.example.contexttrigger.SHARED_PREFERENCES_NAME
+import com.example.contexttrigger.ui.configurations.SHARED_PREFERENCES_NAME
 import java.util.concurrent.TimeUnit
 
 class ApiRateLimiter (private val context: Context) {

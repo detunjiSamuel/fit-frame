@@ -6,6 +6,11 @@ import android.content.IntentFilter
 import android.os.IBinder
 import com.example.contexttrigger.broadcastReceivers.AirplaneModeReceiver
 
+
+
+const val AIRPLANE_RECORDING_PUBLIC_NAME = "AIRPLANE_MODE_ACTIVITY_RECORDING"
+
+
 class AirplaneModeRecording : Service() {
 
     private lateinit var airplaneModeReceiver: AirplaneModeReceiver

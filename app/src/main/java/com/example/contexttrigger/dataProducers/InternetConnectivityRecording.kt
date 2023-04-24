@@ -10,6 +10,9 @@ import android.os.IBinder
 import com.example.contexttrigger.broadcastReceivers.InternetConnectivityReceiver
 
 
+const val INTERNET_RECORDING_PUBLIC_NAME = "INTERNET_CONNECT_ACTIVITY_RECORDING"
+
+
 class InternetConnectivityRecording : Service() {
 
 

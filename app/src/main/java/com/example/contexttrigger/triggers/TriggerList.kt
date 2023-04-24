@@ -12,7 +12,8 @@ import com.example.contexttrigger.triggerManager.Trigger
 val TriggerList : Array<Trigger> =
      arrayOf(
         StepGoal(),
-        testSample()
+        Reward(),
+         Weather()
 
     )
 

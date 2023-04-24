@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -47,6 +48,12 @@ android {
     }
 }
 
+kapt {
+    javacOptions {
+        option("-Adagger.hilt.android.internal.disableAndroidSuperclassValidation=true")
+    }
+}
+
 dependencies {
 
     implementation 'androidx.core:core-ktx:1.7.0'
@@ -72,6 +79,13 @@ dependencies {
 
     implementation 'com.android.volley:volley:1.2.1'
 
-    implementation "androidx.room:room-runtime:2.5.1"
+    // Room
+    implementation "androidx.room:room-runtime:2.5.0"
+
+    kapt "androidx.room:room-compiler:2.5.0"
+
+
+    // Kotlin Extensions and Coroutines support for Room
+    implementation "androidx.room:room-ktx:2.5.0"
 
 }

@@ -10,6 +10,7 @@ data class DataProducer (
     val instance: Class<*>,
     val isPendingIntent: Boolean,
     val publicName: String,
+    val isEssential : Boolean = false
 )
 
 var dataProducerList = arrayOf<DataProducer>(
@@ -29,5 +30,22 @@ var dataProducerList = arrayOf<DataProducer>(
         true,
         WEATHER_RECORDING_PUBLIC_NAME
     )
+    ,
+
+    DataProducer(
+        AirplaneModeRecording :: class.java,
+        true,
+        AIRPLANE_RECORDING_PUBLIC_NAME,
+        true
+    ),
+
+    DataProducer(
+        InternetConnectivityRecording :: class.java,
+        true,
+        INTERNET_RECORDING_PUBLIC_NAME,
+        true
+    ),
+
+
 
 )

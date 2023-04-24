@@ -2,9 +2,10 @@ package com.example.contexttrigger.sensorManager
 
 import android.content.Context
 import android.preference.PreferenceManager
-import com.example.contexttrigger.SHARED_PREFERENCES_NAME
+
 import com.example.contexttrigger.dataProducers.DataProducer
 import com.example.contexttrigger.dataProducers.dataProducerList
+import com.example.contexttrigger.ui.configurations.SHARED_PREFERENCES_NAME
 
 
 private var DEFAULT = "NOT-EXISTS"

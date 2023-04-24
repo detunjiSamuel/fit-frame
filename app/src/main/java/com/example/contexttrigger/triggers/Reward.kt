@@ -5,13 +5,13 @@ import android.content.Context
 import android.os.Build
 import android.util.Log
 import androidx.annotation.RequiresApi
-import com.example.contexttrigger.SHARED_PREFERENCES_NAME
 import com.example.contexttrigger.dataProducers.LOCATION_RECORDING_PUBLIC_NAME
 import com.example.contexttrigger.dataProducers.STEPS_RECORDING_PUBLIC_NAME
 import com.example.contexttrigger.db.steps.GetSteps
 import com.example.contexttrigger.helpers.LocationHelper
 import com.example.contexttrigger.helpers.TimeHelper
 import com.example.contexttrigger.triggerManager.Trigger
+import com.example.contexttrigger.ui.configurations.SHARED_PREFERENCES_NAME
 
 
 var REWARD_KEY = "DISCOUNT-FOR-USER"
@@ -22,7 +22,7 @@ var possibleReward = arrayOf("spa" , "restaurant" ,"gym")
 
 
 
-class reward : Trigger {
+class Reward : Trigger {
     private var emitterNeeded =  arrayOf(LOCATION_RECORDING_PUBLIC_NAME , STEPS_RECORDING_PUBLIC_NAME)
 
     private lateinit var _context : Context

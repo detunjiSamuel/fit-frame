@@ -1,7 +1,11 @@
-package com.example.contexttrigger
+package com.example.contexttrigger.ui.configurations
 
 import android.content.Context
+import android.os.Build
 import android.util.Log
+import androidx.annotation.RequiresApi
+import com.example.contexttrigger.db.steps.GetSteps
+import com.example.contexttrigger.helpers.TimeHelper
 import com.example.contexttrigger.triggers.STEPS_GOAL_KEY
 import com.example.contexttrigger.triggers.defaultGoal
 
@@ -41,6 +45,15 @@ class ConfigHelper {
     {
         val sharedPref = context.getSharedPreferences(SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE)
         return sharedPref.getInt(STEPS_GOAL_KEY, defaultGoal)
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    suspend fun getStepsCompleted(context : Context): Int {
+
+        val completedSteps = GetSteps()(context , TimeHelper().currentDate()) ?: return 0
+
+        return completedSteps.steps
+
     }
 
 }

@@ -3,11 +3,11 @@ package com.example.contexttrigger.triggers
 import android.content.Context
 import android.os.Build
 import androidx.annotation.RequiresApi
-import com.example.contexttrigger.SHARED_PREFERENCES_NAME
 import com.example.contexttrigger.triggerManager.Trigger
 import com.example.contexttrigger.dataProducers.WEATHER_RECORDING_PUBLIC_NAME
 import com.example.contexttrigger.db.steps.GetSteps
 import com.example.contexttrigger.helpers.TimeHelper
+import com.example.contexttrigger.ui.configurations.SHARED_PREFERENCES_NAME
 
 
 private const val NOTIFICATION_TITLE = "Weather Trigger"

@@ -1,13 +1,14 @@
 package com.example.contexttrigger.notificationManager
 
 import android.content.Context
-import com.example.contexttrigger.SHARED_PREFERENCES_NAME
-import com.example.contexttrigger.USER_ALLOWED_NOTIFICATION_KEY
+
 import com.example.contexttrigger.triggerManager.NOT_IMPLEMENTED_TRIGGER_NOTIFICATION_MESSAGE
 
 
 import com.example.contexttrigger.triggerManager.TriggerController
 import com.example.contexttrigger.helpers.TimeHelper
+import com.example.contexttrigger.ui.configurations.SHARED_PREFERENCES_NAME
+import com.example.contexttrigger.ui.configurations.USER_ALLOWED_NOTIFICATION_KEY
 
 private const val NOTIFICATION_CHANNEL_ID_Event = "REGULAR-EVENT"
 
