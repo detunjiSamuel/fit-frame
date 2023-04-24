@@ -13,7 +13,7 @@ import org.json.JSONObject
 
 const val WEATHER_RECORDING_PUBLIC_NAME = "WEATHER_ACTIVITY_RECORDING"
 
-const val API_KEY = "ed2ce3cfb70749159f3b27061128121b"
+const val API_KEY = ""
 
 /*
 * USAGE :
