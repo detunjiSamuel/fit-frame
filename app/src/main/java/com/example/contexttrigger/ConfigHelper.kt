@@ -31,7 +31,7 @@ class ConfigHelper {
         Log.d("dev-log:ConfigHelper", "Set Steps Goal:")
         val sharedPref = context.getSharedPreferences(SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE)
         with (sharedPref.edit()) {
-            putInt("goalCompleted", steps)
+            putInt(STEPS_GOAL_KEY, steps)
             apply()
         }
 

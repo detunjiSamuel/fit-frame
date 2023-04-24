@@ -93,7 +93,7 @@ class StepGoal () : Trigger {
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
-    private suspend fun getStepsCompleted(): Int {
+     suspend fun getStepsCompleted(): Int {
 
         val completedSteps = GetSteps()(_context , TimeHelper().currentDate()) ?: return 0
 
