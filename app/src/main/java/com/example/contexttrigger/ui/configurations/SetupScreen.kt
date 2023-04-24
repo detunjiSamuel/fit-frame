@@ -195,7 +195,7 @@ fun createSetupScreen() {
 
             Spacer(modifier = Modifier.height(24.dp))
 
-            StepsGoal(goal = stepsGoal.value, completed = completedSteps)
+//            StepsGoal(goal = stepsGoal.value, completed = completedSteps)
         }
     }
 }
