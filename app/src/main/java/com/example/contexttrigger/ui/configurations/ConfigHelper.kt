@@ -27,7 +27,7 @@ class ConfigHelper {
 
      fun getPreference(context: Context, key: String): Boolean {
         val sharedPref = context.getSharedPreferences(SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE)
-        return sharedPref.getBoolean(key, false)
+        return sharedPref.getBoolean(key, true)
     }
 
     fun setStepsGoal(context:Context , steps: Int) {

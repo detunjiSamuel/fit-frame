@@ -114,9 +114,10 @@ class NotificationManagerI : Notification() {
     private fun lastNotificationFarEnough():Boolean {
         val sharedPref = _context.getSharedPreferences(SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE)
 
-        val lastTriggerNotificationTimestamp = sharedPref.getString("lastTriggerNotification", "NOT_EXIST")
+        val defaultResult = "NOT_EXIST"
+        val lastTriggerNotificationTimestamp = sharedPref.getString("lastTriggerNotification",defaultResult )
 
-        if (lastTriggerNotificationTimestamp == "NOT_EXIST")
+        if (lastTriggerNotificationTimestamp == defaultResult)
             return true
 
         val minutesDifference = TimeHelper()
