@@ -46,6 +46,13 @@ var dataProducerList = arrayOf<DataProducer>(
         true
     ),
 
+    DataProducer(
+        TimeBasedReminder :: class.java,
+        true,
+        "ALARM_DATA_PRODUCER",
+        true
+    )
+
 
 
 )
