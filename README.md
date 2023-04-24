@@ -1,4 +1,4 @@
-# fContextual Trigger Framework
+# Contextual Trigger Framework
 
 Framework created to support triggers
 
